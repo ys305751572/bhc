@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bluemobi.utils.Result;
+
 @Controller
 @RequestMapping("/app/common/")
 public class CommonsApp {
@@ -15,10 +17,10 @@ public class CommonsApp {
 	 * @param params
 	 * @return
 	 */
-	public String sendCode(@RequestParam Map<String,Object> params) {
+	public Result sendCode(@RequestParam Map<String,Object> params) {
+		
 		
 		return null;
 	}
-	
 	
 }
