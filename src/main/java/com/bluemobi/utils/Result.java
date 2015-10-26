@@ -48,7 +48,7 @@ public final class Result {
 
 	public static Result success() {
 		Result result = new Result();
-		result.status = SUCCESS;
+		result.status = SUCCESS;  
 		result.msg = "";
 		return result;
 	}
