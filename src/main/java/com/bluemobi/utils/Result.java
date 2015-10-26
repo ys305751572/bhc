@@ -1,17 +1,21 @@
 package com.bluemobi.utils;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.context.annotation.Bean;
 
 import com.bluemobi.constant.ErrorCode;
 import com.bluemobi.sys.page.Page;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * 
+ * 
+ * @author yesong
+ *
+ */
 public final class Result {
 
 	private Integer status;                                           // 状态 0:成功 1:失败（异常）
