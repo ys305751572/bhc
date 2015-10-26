@@ -1,11 +1,16 @@
 package com.bluemobi.utils;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Bean;
+
 import com.bluemobi.constant.ErrorCode;
 import com.bluemobi.sys.page.Page;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public final class Result {
 
@@ -67,9 +72,13 @@ public final class Result {
 		}
 		else {
 			String objName = data.getClass().getSimpleName().toLowerCase();
-			result.data.put(objName, data);
+			result.data.put(objName, buildGson().toJson(BeanUtils.beanToMap(data)));
 		}
 		return result;
+	}
+	
+	private static Gson buildGson() {
+		return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 	}
 	
 	public static Result failure(String... errorMessage) {

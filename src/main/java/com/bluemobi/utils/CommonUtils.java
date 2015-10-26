@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -150,6 +151,20 @@ public class CommonUtils {
 		return ip;
 	}
 
+	/**
+	 * 生成验证码
+	 * @param length
+	 * @return
+	 */
+	public static String getCode(int length) {
+	    Random random = new Random();
+	    StringBuffer result = new StringBuffer();
+	    for (int i = 0; i < length; i++) {
+	    	result.append(random.nextInt(10));
+	    }
+	    return result.toString();
+	}
+	
 	public static void main(String[] args) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("user", "yesong");
