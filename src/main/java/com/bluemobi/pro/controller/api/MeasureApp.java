@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bluemobi.pro.entity.Measure;
 import com.bluemobi.pro.service.impl.MeasureService;
 import com.bluemobi.utils.Result;
-import com.squareup.okhttp.Request;
 
 @Controller
 @RequestMapping("/app/measure/")
