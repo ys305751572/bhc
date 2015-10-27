@@ -103,9 +103,9 @@ public class CommonsApp {
 			if(service.isExist(user)) {
 				return Result.failure(ErrorCode.ERROR_05);
 			}
-			else if(StringUtils.isBlank(requestCode) || !requestCode.equals(code)) {
-				return Result.failure(ErrorCode.ERROR_10);
-			}
+//			else if(StringUtils.isBlank(requestCode) || !requestCode.equals(code)) {
+//				return Result.failure(ErrorCode.ERROR_10);
+//			}
 			else {
 				service.addUser(user);
 				return Result.success();
@@ -131,6 +131,7 @@ public class CommonsApp {
 			if(respUser == null || !respUser.getPassword().equals(user.getPassword())) {
 				return Result.failure(ErrorCode.ERROR_03);
 			}
+			respUser.setPassword(null);
 			return Result.success(respUser);
 		} catch (Exception e) {
 			e.printStackTrace();

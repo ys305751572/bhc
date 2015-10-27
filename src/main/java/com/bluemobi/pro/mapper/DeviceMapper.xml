@@ -61,7 +61,7 @@
 		UPDATE
 			device
 		<set>
-			<if test="user_id != null and user_id != ''">
+			<if test="userId != null and userId != ''">
 				user_id = #{userId},
 			</if>
 			<if test="deviceProYear != null and deviceProYear != ''">

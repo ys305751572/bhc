@@ -11,4 +11,25 @@
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="CREATE_USER" property="createUser"/>
 	</resultMap>
+	
+	<!-- 新增反馈 -->
+	<insert id="insert" parameterType="com.bluemobi.pro.entity.FeedBack">
+		INSERT INTO
+			feedback
+		(
+			ID,
+			TITLE,
+			CONTENT,
+			CREATE_USER,
+			CREATE_DATA
+		)
+		VALUES
+		(
+			#{id},
+			#{title},
+			#{content},
+			#{createUser},
+			#{createDate}
+		)
+	</insert>
 </mapper> 

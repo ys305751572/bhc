@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.Measure;
 import com.bluemobi.sys.service.BaseService;
+import com.bluemobi.utils.UUIDUtil;
 
 /**
  * 测量service
@@ -23,7 +24,9 @@ public class MeasureService extends BaseService{
 	 * @throws Exception
 	 */
 	public void insertMeasureValue(Measure measure) throws Exception {
-		this.getBaseDao().save(PRIFIX + "insert", measure);
+		measure.setMeasureId(UUIDUtil.generateUUID());
+		measure.setBak1("1");
+		this.getBaseDao().save(PRIFIX + ".insert", measure);
 	}
 	
 	public List<Measure> findMeasureValue(Measure measure) throws Exception {

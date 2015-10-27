@@ -73,7 +73,7 @@
 		)
 		VALUES
 		(
-			#{user_id},
+			#{userId},
 			#{mobile},
 			#{email},
 			#{account},
@@ -90,6 +90,7 @@
 			#{bak1},
 			#{bak2},
 			#{bak3},
+			#{bak4},
 			#{bak5},
 			#{bak6},
 			#{bak7},
@@ -203,7 +204,7 @@
 			</if>
 		</set>
 		<where>
-			user_id = #{user_id}
+			user_id = #{userId}
 		</where>
 	</update>
 	

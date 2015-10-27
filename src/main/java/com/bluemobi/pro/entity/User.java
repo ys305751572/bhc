@@ -1,7 +1,5 @@
 package com.bluemobi.pro.entity;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * 老人端用户表
  * 
@@ -25,7 +23,7 @@ public class User {
 	private String account = null;
 	// 密码
 	
-	private @Expose String password = null;
+	private String password = null;
 
 	/** *注册第三阶段填写** */
 	// 头像地址
@@ -67,6 +65,56 @@ public class User {
 
 	// 新增字段：备注姓名
 	private String remark = null;
+
+	private Integer dr;
+	
+	private String ts;
+	
+	private String city;
+
+	private String maritalStatus;
+	
+	private String isHighOrSugar;
+
+	public Integer getDr() {
+		return dr;
+	}
+
+	public void setDr(Integer dr) {
+		this.dr = dr;
+	}
+
+	public String getTs() {
+		return ts;
+	}
+
+	public void setTs(String ts) {
+		this.ts = ts;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public String getIsHighOrSugar() {
+		return isHighOrSugar;
+	}
+
+	public void setIsHighOrSugar(String isHighOrSugar) {
+		this.isHighOrSugar = isHighOrSugar;
+	}
 
 	public String getUserId() {
 		return userId;

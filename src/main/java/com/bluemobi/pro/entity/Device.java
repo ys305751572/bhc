@@ -7,8 +7,7 @@ import java.io.Serializable;
  * @author yesong
  *
  */
-public class Device implements Serializable {
-	private static final long serialVersionUID = -6629335435802704292L;
+public class Device {
 	
 	private String deviceId = null;
 	//用户id
@@ -40,9 +39,6 @@ public class Device implements Serializable {
 	//备用字段8
 	private Double bak8 = null;
 	
-	public Device(){
-	}
-
 	public String getDeviceId() {
 		return deviceId;
 	}

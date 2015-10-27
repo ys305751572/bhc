@@ -63,7 +63,7 @@ public final class Result {
 		result.status = SUCCESS;
 		result.msg = "";
 		if(data instanceof List) {
-			result.data.put("list", data);
+			result.data.put("list", BeanUtils.listToMap((List)data));
 		}
 		else if(data instanceof Page) {
 			Page page = (Page) data;
@@ -82,7 +82,7 @@ public final class Result {
 	}
 	
 	private static Gson buildGson() {
-		return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	}
 	
 	public static Result failure(String... errorMessage) {

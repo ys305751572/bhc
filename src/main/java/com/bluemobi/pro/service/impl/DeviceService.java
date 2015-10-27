@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.Device;
 import com.bluemobi.sys.service.BaseService;
+import com.bluemobi.utils.UUIDUtil;
 
 /**
  * 设备service
@@ -22,6 +23,7 @@ public class DeviceService extends BaseService{
 	 * @throws Exception
 	 */
 	public void addDevice(Device device) throws Exception {
+		device.setDeviceId(UUIDUtil.generateUUID());
 		this.getBaseDao().save(PRIFIX + ".insert", device);
 	}
 	
@@ -31,7 +33,7 @@ public class DeviceService extends BaseService{
 	 * @throws Exception
 	 */
 	public void modifyDevice(Device device) throws Exception {
-		this.getBaseDao().update(PRIFIX + "update", device);
+		this.getBaseDao().update(PRIFIX + ".update", device);
 	}
 	
 	/**

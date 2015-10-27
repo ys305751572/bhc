@@ -2,8 +2,10 @@ package com.bluemobi.pro.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
 import com.bluemobi.sys.service.BaseService;
+import com.bluemobi.utils.UUIDUtil;
 
 @Service
 public class UserService extends BaseService{
@@ -16,7 +18,9 @@ public class UserService extends BaseService{
 	 * @return
 	 * @throws Exception
 	 */
-	public int addUser(User user) throws Exception {
+	public int addUser(RegisterUser user) throws Exception {
+		user.setUserId(UUIDUtil.generateUUID());
+		user.setBak4("0");
 		return this.getBaseDao().save(PRIFIX + ".insert", user);
 	}
 	

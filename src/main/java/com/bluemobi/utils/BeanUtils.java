@@ -5,13 +5,24 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.bluemobi.pro.entity.User;
 
 public class BeanUtils {
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static List listToMap(List list) {
+		List _list = new ArrayList();
+		for (Object object : list) {
+			_list.add(beanToMap(object));
+		}
+		return _list;
+	}
+	
 	public static Map<String,Object> beanToMap(Object data) {
 		Assert.IsNotNull(data);
 		Map<String,Object> map = new HashMap<String,Object>();

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.FeedBack;
 import com.bluemobi.sys.service.BaseService;
+import com.bluemobi.utils.DateUtils;
+import com.bluemobi.utils.UUIDUtil;
 
 @Service
 public class FeedBackService extends BaseService{
@@ -16,6 +18,8 @@ public class FeedBackService extends BaseService{
 	 * @throws Exception
 	 */
 	public void insert(FeedBack feedBack) throws Exception {
-		this.getBaseDao().save(PRIFIX + "insert", feedBack);
+		feedBack.setId(UUIDUtil.generateUUID());
+		feedBack.setCreateDate(DateUtils.getCurrentTime());
+		this.getBaseDao().save(PRIFIX + ".insert", feedBack);
 	}
 }

@@ -30,7 +30,7 @@
 	</select>
 	
 	<!-- 病理详情  -->
-	<select id="page" parameterType="map" resultMap="pathologyMap">
+	<select id="findById" parameterType="map" resultMap="pathologyMap">
 		SELECT
 			t.ID,
 			t.TITLE,

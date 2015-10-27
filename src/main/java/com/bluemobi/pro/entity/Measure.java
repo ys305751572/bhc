@@ -8,10 +8,8 @@ import java.io.Serializable;
  * @author yesong
  *
  */
-public class Measure implements Serializable {
+public class Measure{
 	
-	private static final long serialVersionUID = -5540056395815610771L;
-
 	private String measureId = null;
 	// 上传用户id
 	private String userId = null;

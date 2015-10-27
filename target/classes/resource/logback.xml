@@ -1,4 +1,4 @@
-ï»?<?xml version="1.0" encoding="UTF-8"?>
+ï»??xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<property name="LOG_HOME" value="${cms_root}" />
 
