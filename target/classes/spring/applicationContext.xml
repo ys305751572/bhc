@@ -42,7 +42,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
 
-	<!-- 配置Controller 还是必须�?-->
+	<!-- 配置Controller 还是必须�? -->
 	<context:component-scan base-package="com.bluemobi.sys">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
@@ -100,7 +100,7 @@
 		</tx:attributes>
 	</tx:advice>
 
-	<!-- 读取属�?文件 -->
+	<!-- 读取属�?�文�? -->
 	<bean id="settings"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
