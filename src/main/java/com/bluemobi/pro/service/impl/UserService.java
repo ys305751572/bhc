@@ -46,4 +46,12 @@ public class UserService extends BaseService{
 		return reUser;
 	} 
 	
+	/**
+	 * 修改用户信息
+	 * @param user
+	 * @throws Exception
+	 */
+	public void modifyUser(User user) throws Exception {
+		this.getBaseDao().update(PRIFIX + ".update", user);
+	}
 }

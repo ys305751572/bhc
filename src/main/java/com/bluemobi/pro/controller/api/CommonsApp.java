@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemobi.cache.CacheService;
 import com.bluemobi.constant.ErrorCode;
+import com.bluemobi.pro.entity.FeedBack;
 import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
+import com.bluemobi.pro.service.impl.FeedBackService;
 import com.bluemobi.pro.service.impl.UserService;
 import com.bluemobi.utils.CommonUtils;
 import com.bluemobi.utils.JavaSmsApi;
@@ -33,6 +35,9 @@ public class CommonsApp {
 	
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private FeedBackService fservice;
 	
 	/**
 	 * 发送验证码
@@ -132,4 +137,17 @@ public class CommonsApp {
 			return Result.failure();
 		}
 	}
+	
+	@RequestMapping(value = "feedback", method = RequestMethod.POST)
+	@ResponseBody
+	public Result feedback(FeedBack feedBack) {
+		
+		try {
+			fservice.insert(feedBack);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
+		return Result.success();
+	} 
 }

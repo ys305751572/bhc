@@ -22,6 +22,11 @@
 			t.CREATE_DATE
 		FROM
 			t_pathology t
+		WHERE
+			1 = 1
+		<if test="type != null and type != ''">
+			AND type = #{type}
+		</if>
 	</select>
 	
 	<!-- 病理详情  -->

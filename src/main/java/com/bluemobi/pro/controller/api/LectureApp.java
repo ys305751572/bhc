@@ -20,8 +20,8 @@ import com.bluemobi.utils.Result;
  *
  */
 @Controller
-@RequestMapping("/app/pathology/")
-public class PathologyApp {
+@RequestMapping("/app/lecture/")
+public class LectureApp {
 
 	@Autowired
 	private PathologyService service;
@@ -40,7 +40,7 @@ public class PathologyApp {
 		
 		Page<Pathology> page = null;
 		try {
-			params.put("type", 0); // 设置类型为病理
+			params.put("type", 1); // 设置类型为讲座
 			page = service.page(params, currentPage, pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
