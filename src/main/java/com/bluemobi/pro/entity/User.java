@@ -46,7 +46,7 @@ public class User {
 	// 苹果token
 	private String iosToken = null;
 
-	// 备用字段1
+	// 备用字段1 年龄
 	private String bak1 = null;
 	// 备用字段2
 	private String bak2 = null;

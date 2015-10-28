@@ -39,7 +39,7 @@ public class DetectionApp {
 	@ResponseBody
 	public Result detectionTpage(@RequestParam Map<String,Object> params) {
 		
-		Integer currentPage = params.get("pageNum") == null ? 0 : Integer.parseInt(params.get("pageNum").toString()) - 1;
+		Integer currentPage = params.get("pageNum") == null ? 1 : Integer.parseInt(params.get("pageNum").toString());
 		Integer pageSize = params.get("pageSize") == null ? 10 : Integer.parseInt(params.get("pageSize").toString());
 		
 		Page<DetectionT> page = null;

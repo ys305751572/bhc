@@ -77,14 +77,14 @@ public final class Result {
 		}
 		else {
 			String objName = data.getClass().getSimpleName().toLowerCase();
-			result.data.put(objName, buildGson().toJson(BeanUtils.beanToMap(data)));
+			result.data.put(objName, BeanUtils.beanToMap(data));
 		}
 		return result;
 	}
 	
-	private static Gson buildGson() {
-		return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-	}
+//	private static Gson buildGson() {
+//		return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+//	}
 	
 	public static Result failure(String... errorMessage) {
 		Result result = new Result();
