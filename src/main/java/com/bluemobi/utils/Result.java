@@ -67,12 +67,13 @@ public final class Result {
 		}
 		else if(data instanceof Page) {
 			Page page = (Page) data;
+			List list = (List) page.getRows();
 			Map<String, Object> pagemap = new HashMap<String, Object>();
             pagemap.put("totalNum", page.getTotal());
             pagemap.put("totalPage", page.getPageCount());
             pagemap.put("currentPage", page.getCurrent());
             result.data.put("page", pagemap);
-            result.data.put("list", page.getRows());
+            result.data.put("list", BeanUtils.listToMap(list));
 		}
 		else {
 			String objName = data.getClass().getSimpleName().toLowerCase();

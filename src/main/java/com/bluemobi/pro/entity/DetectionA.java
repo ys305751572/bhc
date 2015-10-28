@@ -9,8 +9,26 @@ package com.bluemobi.pro.entity;
 public class DetectionA {
 
 	private String id; //
+	private String detectionTId; // 题目类型ID
 	private String detectionQId; // 题目ID
 	private String answer; // 选择答案
+	private String userId; // 用户ID
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDetectionTId() {
+		return detectionTId;
+	}
+
+	public void setDetectionTId(String detectionTId) {
+		this.detectionTId = detectionTId;
+	}
 
 	public String getId() {
 		return id;

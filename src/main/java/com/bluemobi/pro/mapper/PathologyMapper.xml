@@ -6,9 +6,10 @@
 	
 	<resultMap type="com.bluemobi.pro.entity.Pathology" id="pathologyMap">
 		<id column="ID" property="id"/>
-		<result column="TITLE" property="title"/>
-		<result column="CONTENT" property="content"/>
-		<result column="IMAGE" property="image"/>
+		<result column="TITLE" property="title" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="CONTENT" property="content" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="IMAGE" property="image" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="URL" property="url" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
 		<result column="CREATE_DATE" property="createDate"/>
 	</resultMap>
 	
@@ -19,23 +20,25 @@
 			t.TITLE,
 			t.CONTENT,
 			t.IMAGE,
+			t.URL,
 			t.CREATE_DATE
 		FROM
 			t_pathology t
 		WHERE
 			1 = 1
 		<if test="type != null and type != ''">
-			AND type = #{type}
+			AND t.TYPE = #{type}
 		</if>
 	</select>
 	
 	<!-- 病理详情  -->
-	<select id="findById" parameterType="map" resultMap="pathologyMap">
+	<select id="findById" parameterType="com.bluemobi.pro.entity.Pathology" resultMap="pathologyMap">
 		SELECT
 			t.ID,
 			t.TITLE,
 			t.CONTENT,
 			t.IMAGE,
+			t.URL,
 			t.CREATE_DATE
 		FROM
 			t_pathology t

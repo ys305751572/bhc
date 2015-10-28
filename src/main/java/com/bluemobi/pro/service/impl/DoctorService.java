@@ -33,6 +33,6 @@ public class DoctorService extends BaseService{
 	 * @throws Exception
 	 */
 	public Doctor findDoctorDetail(Doctor doctor) throws Exception {
-		return this.getBaseDao().getObject(PRIFIX + "findDoctorById", doctor);
+		return this.getBaseDao().getObject(PRIFIX + ".findDoctorById", doctor);
 	}
 }

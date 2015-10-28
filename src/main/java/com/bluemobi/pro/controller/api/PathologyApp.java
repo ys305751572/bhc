@@ -35,12 +35,12 @@ public class PathologyApp {
 	@ResponseBody
 	public Result page(@RequestParam Map<String,Object> params) {
 		
-		Integer currentPage = params.get("pageNum") == null ? 0 : Integer.parseInt(params.get("pageNum").toString());
+		Integer currentPage = params.get("pageNum") == null ? 0 : Integer.parseInt(params.get("pageNum").toString()) - 1;
 		Integer pageSize = params.get("pageSize") == null ? 10 : Integer.parseInt(params.get("pageSize").toString());
 		
 		Page<Pathology> page = null;
 		try {
-			params.put("type", 0); // 设置类型为病理
+			params.put("type", "0"); // 设置类型为病理
 			page = service.page(params, currentPage, pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class PathologyApp {
 		
 		Pathology pathology2 = null;
 		try {
-			pathology2 = service.findById(pathology2);
+			pathology2 = service.findById(pathology);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();

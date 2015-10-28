@@ -1,7 +1,5 @@
 package com.bluemobi.pro.entity;
 
-import java.io.Serializable;
-
 /**
  * 测量值
  * 

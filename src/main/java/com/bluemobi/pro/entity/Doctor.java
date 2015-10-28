@@ -1,16 +1,13 @@
 package com.bluemobi.pro.entity;
 
-import java.io.Serializable;
-
 /**
  * 专家医师
  * 
  * @author yesong
  *
  */
-public class Doctor implements Serializable{
+public class Doctor{
 
-	private static final long serialVersionUID = -7062217446465505118L;
 	private String id;
 	private String name; // 医生名字
 	private String detail; // 医生简介
@@ -19,12 +16,30 @@ public class Doctor implements Serializable{
 	private String mobile; // 手机号
 	private String tel; // 座机电话
 	private String head; // 头像地址
-	private int gender; // 性别1:男 2:女
-	private int age; // 年龄
+	private Integer gender; // 性别1:男 2:女
+	private Integer age; // 年龄
 	private String level; // 医师等级
 	private String birthday; // 出生日期
 	private String online; // 在诊时间
-	private int type; // 类型 0:专家 1:家庭医生
+	private Integer type; // 类型 0:专家 1:家庭医生
+	private String reward; // 获得奖励
+	private String hospital; // 所在医院
+	
+	public String getReward() {
+		return reward;
+	}
+
+	public void setReward(String reward) {
+		this.reward = reward;
+	}
+
+	public String getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(String hospital) {
+		this.hospital = hospital;
+	}
 
 	public String getId() {
 		return id;
@@ -90,19 +105,19 @@ public class Doctor implements Serializable{
 		this.head = head;
 	}
 
-	public int getGender() {
+	public Integer getGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -130,11 +145,12 @@ public class Doctor implements Serializable{
 		this.online = online;
 	}
 
-	public int getType() {
+	public Integer getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
+
 }

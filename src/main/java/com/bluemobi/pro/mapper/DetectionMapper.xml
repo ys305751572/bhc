@@ -6,10 +6,10 @@
 	
 	<resultMap type="com.bluemobi.pro.entity.DetectionT" id="detectionTMap">
 		<id column="ID" property="id"/>
-		<result column="TITLE" property="title"/>
-		<result column="IMAGE" property="image" />
-		<result column="CREATE_DATE" property="createDate"/>
-		<result column="CREATE_USER" property="createUser"/>
+		<result column="TITLE" property="title" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="IMAGE" property="image" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="CREATE_USER" property="createUser" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
 	</resultMap>
 	
 	<resultMap type="com.bluemobi.pro.entity.DetectionQ" id="detectionQMap">
@@ -34,9 +34,7 @@
 		SELECT
 			t.ID,
 			t.TITLE,
-			t.IMAGE,
-			t.CREATE_DATE,
-			t.CREATE_USER
+			t.IMAGE
 		FROM
 			t_detection_t t
 	</select>
@@ -64,12 +62,14 @@
 			t_detection_a
 		(
 			ID,
+			DETECTION_T_Id，
 			DETECTION_Q_Id,
 			ANSWER
 		)
 		VALUES
 		(
 			#{id},
+			#{detectionTId},
 			#{detectionQId},
 			#{answer}
 		)
@@ -84,6 +84,8 @@
 		FROM
 			t_detection_a t
 		WHERE
-			t.DETECTION_Q_Id = #{detectionQId}
+			t.DETECTION_T_Id = #{detectionTId}
+		AND
+			t.USER_ID = #{userId}
 	</select>
 </mapper> 

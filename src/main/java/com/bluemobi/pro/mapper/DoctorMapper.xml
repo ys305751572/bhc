@@ -6,19 +6,19 @@
 	
 	<resultMap type="com.bluemobi.pro.entity.Doctor" id="doctorMap">
 		<id column="ID" property="id"/>
-		<result column="NAME" property="name"/>
-		<result column="DETAIL" property="detail"/>
-		<result column="DEPART" property="depart"/>
-		<result column="DOMAIN" property="domain"/>
-		<result column="MOBILE" property="mobile"/>
-		<result column="TEL" property="tel"/>
-		<result column="HEAD" property="head"/>
-		<result column="GENDER" property="gender"/>
-		<result column="AGE" property="age"/>
-		<result column="LEVEL" property="level"/>
-		<result column="BIRTHDAY" property="birthday"/>
-		<result column="ONLINE" property="online"/>
-		<result column="TYPE" property="type"/>
+		<result column="NAME" property="name" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="DETAIL" property="detail" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="DEPART" property="depart" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="DOMAIN" property="domain" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="MOBILE" property="mobile" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="TEL" property="tel" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="HEAD" property="head" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="GENDER" property="gender" typeHandler="com.bluemobi.mybatis.IntegerIfNull"/>
+		<result column="AGE" property="age" typeHandler="com.bluemobi.mybatis.IntegerIfNull"/>
+		<result column="LEVEL" property="level" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="BIRTHDAY" property="birthday" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="ONLINE" property="online" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
+		<result column="TYPE" property="type" typeHandler="com.bluemobi.mybatis.IntegerIfNull"/>
 	</resultMap>
 	
 	<!-- 家庭医生列表 -->
@@ -27,16 +27,14 @@
 			t.ID,
 			t.NAME,
 			t.DETAIL,
-			t.MOBILE,
+			t.DEPART,
+			t.DOMAIN,
 			t.HEAD,
-			t.GENDER,
-			t.AGE,
-			t.ONLINE,
-			t.BIRTHDAY
+			t.LEVEL, 
+			t.REWARD,
+			t.HOSPITAL
 		FROM
 			t_doctor t
-		WHERE
-			t.TYPE = 1 
 		ORDER BY
 			t.ID
 	</select>
@@ -47,12 +45,12 @@
 			t.ID,
 			t.NAME,
 			t.DETAIL,
-			t.MOBILE,
+			t.DEPART,
+			t.DOMAIN,
 			t.HEAD,
-			t.GENDER,
-			t.AGE,
-			t.ONLINE,
-			t.BIRTHDAY
+			t.LEVEL, 
+			t.REWARD,
+			t.HOSPITAL
 		FROM
 			t_doctor t
 		WHERE

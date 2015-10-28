@@ -23,7 +23,7 @@ public class PathologyService extends BaseService{
 	 * @throws Exception
 	 */
 	public Page<Pathology> page(Map<String,Object> params,Integer currentPage,Integer pageSize) throws Exception {
-		return this.getBaseDao().page(PRIFIX + ".page", params, currentPage, currentPage);
+		return this.getBaseDao().page(PRIFIX + ".page", params, currentPage, pageSize);
 	}
 	
 	/**

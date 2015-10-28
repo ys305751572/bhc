@@ -15,7 +15,7 @@ import com.bluemobi.sys.page.Page;
 import com.bluemobi.utils.Result;
 
 /**
- * 病理controller
+ * 讲座controller
  * @author Administrator
  *
  */
@@ -27,7 +27,7 @@ public class LectureApp {
 	private PathologyService service;
 	
 	/**
-	 * 病理列表
+	 * 讲座列表
 	 * @param params
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public class LectureApp {
 		
 		Page<Pathology> page = null;
 		try {
-			params.put("type", 1); // 设置类型为讲座
+			params.put("type", "1"); // 设置类型为讲座
 			page = service.page(params, currentPage, pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class LectureApp {
 	}
 	
 	/**
-	 * 查询病理详细信息
+	 * 查询讲座详细信息
 	 * @param pathology
 	 * @return
 	 */

@@ -45,6 +45,8 @@ public class DetectionService extends BaseService{
 	public void insertAnswer(Map<String,Object> params) throws Exception {
 		
 		// 答案格式 1,A|2,B|3,C|4,D
+		String detectionTId = params.get("detectionTId").toString();
+		String userId = params.get("userId").toString();
 		String answer = params.get("answer").toString();
 		if(StringUtils.isNotBlank(answer)) {
 			String[] questions = answer.split("\\|");
@@ -57,8 +59,9 @@ public class DetectionService extends BaseService{
 					DetectionA a = new DetectionA();
 					a.setDetectionQId(qid);
 					a.setAnswer(_answer);
-					// TODO setId
+					a.setDetectionTId(detectionTId);
 					a.setId(UUIDUtil.generateUUID());
+					a.setUserId(userId);
 					this.getBaseDao().save(PRIFIX + ".insertAnswer", a);
 				}
 			}
