@@ -36,7 +36,8 @@
 			result5,
 			sendMsg,
 			sendTime,
-			bak1
+			bak1,
+			bak6
 		)
 		VALUES
 		(
@@ -52,7 +53,8 @@
 			#{result5},
 			#{sendMsg},
 			#{sendTime},
-			#{bak1}
+			#{bak1},
+			#{bak6}
 		)
 	</insert>
 	
@@ -80,7 +82,8 @@
 			result5,
 			sendMsg,
 			sendTime,
-			bak1
+			bak1,
+			bak6
 		FROM
 			measure
 		WHERE

@@ -60,7 +60,7 @@ public class MeasureApp {
 	 * @param measure
 	 * @return
 	 */
-	@RequestMapping(value = "findByUseId", method = RequestMethod.POST)
+	@RequestMapping(value = "findByUserId", method = RequestMethod.POST)
 	@ResponseBody
 	public Result findByUseId(Measure measure) {
 		List<Measure> list = null;

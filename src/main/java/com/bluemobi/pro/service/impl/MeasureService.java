@@ -1,5 +1,7 @@
 package com.bluemobi.pro.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class MeasureService extends BaseService{
 	public void insertMeasureValue(Measure measure) throws Exception {
 		measure.setMeasureId(UUIDUtil.generateUUID());
 		measure.setBak1("1");
+		measure.setBak6(new Timestamp(new Date().getTime()));
 		this.getBaseDao().save(PRIFIX + ".insert", measure);
 	}
 	

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemobi.cache.CacheService;
 import com.bluemobi.constant.ErrorCode;
+import com.bluemobi.location.Location;
+import com.bluemobi.location.LocationUtils;
 import com.bluemobi.pro.entity.FeedBack;
 import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
@@ -151,4 +152,20 @@ public class CommonsApp {
 		}
 		return Result.success();
 	} 
+	
+	
+	@RequestMapping(value = "record", method = RequestMethod.POST)
+	@ResponseBody
+	public Result record(@RequestParam Map<String,Object> params) {
+		
+		if(ParamUtils.existEmpty(params, "userId")) return Result.failure(ErrorCode.ERROR_02);
+		
+		String aolUserId = params.get("userId").toString();
+		Double lon = params.get("lon") == null ? null : Double.parseDouble(params.get("lon").toString());
+		Double lat = params.get("lat") == null ? null : Double.parseDouble(params.get("lat").toString());
+		Location location = new Location(aolUserId, lon, lat);
+		
+		LocationUtils.create().receivceLocation(location);
+		return Result.success();
+	}
 }

@@ -62,16 +62,19 @@
 			t_detection_a
 		(
 			ID,
-			DETECTION_T_Id，
+			DETECTION_T_Id,
 			DETECTION_Q_Id,
-			ANSWER
+			ANSWER,
+			`USER_ID`
+			
 		)
 		VALUES
 		(
 			#{id},
 			#{detectionTId},
 			#{detectionQId},
-			#{answer}
+			#{answer},
+			#{userId}
 		)
 	</insert>
 	
