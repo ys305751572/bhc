@@ -23,6 +23,25 @@ public class BeanUtils {
 		return _list;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked"})
+	public static Map mapToMap(Map<String,Object> data) {
+		for (Map.Entry<String,Object> entity : data.entrySet()) {
+			Object obj = entity.getValue();
+			if(obj instanceof List) {
+				List list = new ArrayList();
+				for (Object object : (List)obj) {
+					list.add(beanToMap(object));
+				}
+				data.put(entity.getKey(),list);
+			}
+			else {
+				data.put(entity.getKey(), beanToMap(entity.getValue()));
+			}
+			
+		}
+		return data;
+	}
+	
 	public static Map<String,Object> beanToMap(Object data) {
 		Assert.IsNotNull(data);
 		Map<String,Object> map = new HashMap<String,Object>();

@@ -57,7 +57,7 @@ public final class Result {
 		return result;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Result success(Object data) {
 		Result result = new Result();
 		result.status = SUCCESS;
@@ -75,6 +75,10 @@ public final class Result {
             result.data.put("page", pagemap);
             result.data.put("list", BeanUtils.listToMap(list));
 		}
+		else if(data instanceof Map) {
+			result.data.put("object", BeanUtils.mapToMap((Map)data));
+		}
+		
 		else {
 			String objName = data.getClass().getSimpleName().toLowerCase();
 			result.data.put(objName, BeanUtils.beanToMap(data));

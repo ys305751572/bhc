@@ -51,6 +51,26 @@ public class Measure{
 	// 备用字段8
 	private Double bak8 = null;
 
+	private String dateDown;
+	
+	private String dateUp;
+	
+	public String getDateDown() {
+		return dateDown;
+	}
+
+	public void setDateDown(String dateDown) {
+		this.dateDown = dateDown;
+	}
+
+	public String getDateUp() {
+		return dateUp;
+	}
+
+	public void setDateUp(String dateUp) {
+		this.dateUp = dateUp;
+	}
+
 	public Measure() {
 	}
 

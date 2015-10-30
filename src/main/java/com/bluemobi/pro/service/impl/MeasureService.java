@@ -1,9 +1,13 @@
 package com.bluemobi.pro.service.impl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.Measure;
@@ -32,7 +36,8 @@ public class MeasureService extends BaseService{
 		this.getBaseDao().save(PRIFIX + ".insert", measure);
 	}
 	
-	public List<Measure> findMeasureValue(Measure measure) throws Exception {
+	@SuppressWarnings("rawtypes")
+	public List findMeasureValue(Measure measure) throws Exception {
 		return this.getBaseDao().getList(PRIFIX + ".findMeasureValue", measure);
 	}
 	

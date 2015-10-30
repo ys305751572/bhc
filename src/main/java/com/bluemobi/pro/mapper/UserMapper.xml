@@ -220,7 +220,8 @@
 			u.birthday,
 			u.height,
 			u.weight,
-			u.password
+			u.password,
+			u.bak1
 		FROM
 			user u
 		WHERE

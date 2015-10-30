@@ -1,6 +1,7 @@
 package com.bluemobi.pro.controller.api;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +64,7 @@ public class MeasureApp {
 	@RequestMapping(value = "findByUserId", method = RequestMethod.POST)
 	@ResponseBody
 	public Result findByUseId(Measure measure) {
-		List<Measure> list = null;
+		List list = null;
 		try {
 			list = service.findMeasureValue(measure);
 		} catch (Exception e) {

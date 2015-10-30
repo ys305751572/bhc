@@ -87,6 +87,15 @@
 		FROM
 			measure
 		WHERE
+			1 = 1
+		AND
 			user_id = #{userId}
+		<if test="dateDown != null and dateDown != ''">
+			AND bak6 &gt; #{dateDown}
+		</if>
+		<if test="dateUp != null and dateUp != ''">
+			AND bak6 &lt; #{dateUp}
+		</if>
+		ORDER BY bak6 DESC
 	</select>
 </mapper> 
