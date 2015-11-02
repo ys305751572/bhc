@@ -89,7 +89,7 @@
 	</update>
 	
 	<!-- 新增设备 -->
-	<insert id="insert" parameterType="com.bluemobi.pro.entity.Device">
+	<insert id="insert" parameterType="com.bluemobi.pro.entity.Device" keyProperty="device_id" useGeneratedKeys="true">
 		INSERT INTO
 			device
 		(

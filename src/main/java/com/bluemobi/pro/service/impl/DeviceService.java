@@ -22,9 +22,10 @@ public class DeviceService extends BaseService{
 	 * 用户添加设备
 	 * @throws Exception
 	 */
-	public void addDevice(Device device) throws Exception {
+	public String addDevice(Device device) throws Exception {
 		device.setDeviceId(UUIDUtil.generateUUID());
 		this.getBaseDao().save(PRIFIX + ".insert", device);
+		return device.getDeviceId();
 	}
 	
 	/**

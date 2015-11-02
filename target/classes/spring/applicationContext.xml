@@ -109,16 +109,7 @@
 			</list>
 		</property>
 	</bean>
-
-
-
-
-
 	<bean id="cacheTempCodeServiceImpl" class="com.bluemobi.cache.impl.CacheTempCodeServiceImpl" />
-
-
-
-
 	<!-- <bean id="objectMapper" class="com.bluemobi.www.jackson.JacksonObjectMapper" 
 		/> -->
 </beans>

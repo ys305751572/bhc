@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bluemobi.cache.CacheService;
 import com.bluemobi.constant.ErrorCode;
@@ -22,9 +23,11 @@ import com.bluemobi.pro.entity.User;
 import com.bluemobi.pro.service.impl.FeedBackService;
 import com.bluemobi.pro.service.impl.UserService;
 import com.bluemobi.utils.CommonUtils;
+import com.bluemobi.utils.ImageUtils;
 import com.bluemobi.utils.JavaSmsApi;
 import com.bluemobi.utils.ParamUtils;
 import com.bluemobi.utils.Result;
+import com.sun.syndication.feed.rss.Image;
 
 @Controller
 @RequestMapping("/app/common/")
@@ -166,6 +169,22 @@ public class CommonsApp {
 		Location location = new Location(aolUserId, lon, lat);
 		
 		LocationUtils.create().receivceLocation(location);
+		return Result.success();
+	}
+	
+	@RequestMapping(value = "uploadHead", method = RequestMethod.POST)
+	@ResponseBody
+	public Result uploadHead(User user,@RequestParam("head") MultipartFile file) {
+		
+		String headPic = null;
+		try {
+			headPic = ImageUtils.saveImage(file, false)[0];
+			user.setHeadPic(headPic);
+			service.modifyUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return Result.success();
 	}
 }

@@ -32,13 +32,14 @@ public class DeviceApp {
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	@ResponseBody
 	public Result addNewDeviceToUser(Device device) {
+		Device _d = new Device();
 		try {
-			service.addDevice(device);
+			_d.setDeviceId(service.addDevice(device));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();
 		}
-		return Result.success();
+		return Result.success(_d);
 	}
 	
 	/**
