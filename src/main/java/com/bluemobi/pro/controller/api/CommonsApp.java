@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +28,9 @@ import com.bluemobi.pro.service.impl.FeedBackService;
 import com.bluemobi.pro.service.impl.UserService;
 import com.bluemobi.utils.CommonUtils;
 import com.bluemobi.utils.ImageUtils;
-import com.bluemobi.utils.JavaSmsApi;
 import com.bluemobi.utils.ParamUtils;
 import com.bluemobi.utils.Result;
+import com.bluemobi.utils.SmsUtils;
 
 @Controller
 @RequestMapping("/app/common/")
@@ -46,7 +47,7 @@ public class CommonsApp {
 
 	@Autowired
 	private AolUserService aolUserService;
-	
+
 	/**
 	 * 发送验证码
 	 * 
@@ -59,33 +60,22 @@ public class CommonsApp {
 
 		String code = null;
 		try {
-			if (ParamUtils.existEmpty(params, "mobile", "action")) {
+			if (ParamUtils.existEmpty(params, "mobile")) {
 				return Result.failure();
 			}
 
 			// 验证手机号是否存在
-			String action = (String) params.get("action");
 			Map<String, Object> tempMap = new HashMap<String, Object>();
 			tempMap.put("mobile", params.get("mobile"));
-			// if ("register".equals(action)) { // 注册
-			// if (map != null && map.size() > 0) {
-			// return ResultUtils.error(ErrorCode.ERROR_05);
-			// }
-			// } else { // 找回密码、修改密码
-			// if (map == null || map.size() == 0) {
-			// return ResultUtils.error(ErrorCode.ERROR_06);
-			// }
-			// }
-
 			// 生成验证码
 			code = CommonUtils.getCode(6);
 
 			String mobile = params.get("mobile").toString();
-			String result = JavaSmsApi.sendShortMessage(mobile, code);
+//			String result = JavaSmsApi.sendShortMessage(mobile, code);
 			// 成功
-			if (result.contains("\"msg\":\"OK\"")) {
+			if (SmsUtils.cjsmsSend(code, mobile)) {
 				cacheService.put(mobile, code);
-				return Result.success(code);
+				return Result.success();
 			}
 			// 失败
 			else {
@@ -113,10 +103,9 @@ public class CommonsApp {
 			if (service.isExist(user)) {
 				return Result.failure(ErrorCode.ERROR_05);
 			}
-			// else if(StringUtils.isBlank(requestCode) ||
-			// !requestCode.equals(code)) {
-			// return Result.failure(ErrorCode.ERROR_10);
-			// }
+			 else if(StringUtils.isBlank(requestCode) || !requestCode.equals(code)) {
+				 return Result.failure(ErrorCode.ERROR_10);
+			 }
 			else {
 				service.addUser(user);
 				return Result.success();
@@ -174,7 +163,8 @@ public class CommonsApp {
 		String aolUserId = params.get("userId").toString();
 		Double lon = params.get("lon") == null ? null : Double.parseDouble(params.get("lon").toString());
 		Double lat = params.get("lat") == null ? null : Double.parseDouble(params.get("lat").toString());
-		Location location = new Location(aolUserId, lon, lat);
+		String address = params.get("address") == null ? "" : params.get("address").toString();
+		Location location = new Location(aolUserId, lon, lat,address);
 
 		LocationUtils.create().receivceLocation(location);
 		return Result.success();
@@ -205,8 +195,9 @@ public class CommonsApp {
 			return Result.failure(ErrorCode.ERROR_02);
 
 		String aolUserId = params.get("aolUserId").toString();
-		 Location location = LocationUtils.create().getLocation(aolUserId);
-		 if(location == null) return Result.failure(ErrorCode.ERROR_14);
+		Location location = LocationUtils.create().getLocation(aolUserId);
+		if (location == null)
+			return Result.failure(ErrorCode.ERROR_14);
 		// 用户已下线
 
 		// -------------------
@@ -215,12 +206,11 @@ public class CommonsApp {
 		// Location location = LocationUtils.create().getTest(aolUserId);
 		return Result.success(location);
 	}
-	
-	
+
 	// 查询关注人列表
 	@RequestMapping(value = "foucsList", method = RequestMethod.POST)
 	@ResponseBody
-	public Result findFoucsList(@RequestParam Map<String,Object> params) {
+	public Result findFoucsList(@RequestParam Map<String, Object> params) {
 		List<AolUser> aolUserList = null;
 		try {
 			aolUserList = aolUserService.findFocus(params.get("memberId").toString());

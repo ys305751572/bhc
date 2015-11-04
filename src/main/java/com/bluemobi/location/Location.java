@@ -10,7 +10,8 @@ public class Location {
 	private Double lat; // 维度
 	
 	private Long lastLocationTime; // 最后发送地理位置时间
-
+	
+	private String address; // 所在地址
 	
 	public Location() {}
 	
@@ -19,13 +20,22 @@ public class Location {
 		this.lastLocationTime = lastLocationTime;
 	}
 	
-	public Location(String aolUserId,Double lon,Double lat) {
+	public Location(String aolUserId,Double lon,Double lat,String address) {
 		this.aolUserId = aolUserId;
 		this.lon = lon;
 		this.lat = lat;
+		this.address = address;
 		this.lastLocationTime = System.currentTimeMillis();
 	}
 	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getAolUserId() {
 		return aolUserId;
 	}

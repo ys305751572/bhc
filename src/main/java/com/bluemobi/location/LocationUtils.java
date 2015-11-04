@@ -80,14 +80,14 @@ public class LocationUtils {
 		test.put(10, "30.783455666735187,114.41191226445015");
 	}
 	
-	public Location getTest(String aolUserId) {
-		
-		int i = new Random().nextInt(10);
-		String data = test.get(i+1);
-		String[] datas = data.split(",");
-		Location l = new Location(aolUserId, Double.parseDouble(datas[1]), Double.parseDouble(datas[0]));
-		return l;
-	}
+//	public Location getTest(String aolUserId) {
+//		
+//		int i = new Random().nextInt(10);
+//		String data = test.get(i+1);
+//		String[] datas = data.split(",");
+//		Location l = new Location(aolUserId, Double.parseDouble(datas[1]), Double.parseDouble(datas[0]));
+//		return l;
+//	}
 	
 	
 }

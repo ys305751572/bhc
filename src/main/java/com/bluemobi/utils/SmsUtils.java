@@ -1,5 +1,8 @@
 package com.bluemobi.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * 短信发送工具类
  * @author yesong 
@@ -7,7 +10,10 @@ package com.bluemobi.utils;
  */
 public class SmsUtils {
 
-	public static String cjsmsSend(String content,String... mobiles) {
+	public static boolean cjsmsSend(String code,String... mobiles) {
+		
+		String content = "【健康管家】您的验证码为:" + code + ",请不要将验证码透露给其他人";
+		
 		final String url = "http://116.255.153.152:9999/sms.aspx";
 		final String account = "whgjkj";
 		final String password = "baicai626";
@@ -15,34 +21,37 @@ public class SmsUtils {
 		final String sendTime = DateUtils.getCurrentTime();
 		
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(url)
-		.append("?")
-		.append("action=")
-		.append(action)
-		.append("&")
-		.append("userid=529")
-		.append("&")
-		.append("account=")
-		.append(account)
-		.append("&")
-		.append("password=")
-		.append(password)
-		.append("&")
-		.append("mobile=")
-		.append(linkMobile(mobiles))
-		.append("&")
-		.append("content=")
-		.append(content)
-		.append("&")
-		.append("sendTime=")
-		.append(sendTime)
-		.append("&")
-		.append("extno=");
+		try {
+			buffer.append(url)
+			.append("?")
+			.append("action=")
+			.append(URLEncoder.encode(action, "utf-8"))
+			.append("&")
+			.append("userid=529")
+			.append("&")
+			.append("account=")
+			.append(URLEncoder.encode(account, "utf-8"))
+			.append("&")
+			.append("password=")
+			.append(URLEncoder.encode(password,"utf-8"))
+			.append("&")
+			.append("mobile=")
+			.append(URLEncoder.encode(linkMobile(mobiles), "utf-8"))
+			.append("&")
+			.append("content=")
+			.append(URLEncoder.encode(content, "utf-8"))
+			.append("&")
+			.append("sendTime=")
+			.append(URLEncoder.encode(sendTime, "utf-8"))
+			.append("&")
+			.append("extno=");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		
-		System.out.println("url:" + buffer.toString());
 		String result = WebserviceUtil.post(buffer.toString());
 		System.out.println(result);
-		return null;
+		return result.contains("Success");
 	}
 	
 	private static String linkMobile(String... mobiles) {
@@ -56,8 +65,6 @@ public class SmsUtils {
 	
 	public static void main(String[] args) {
 		String mobile = "13476107753";
-		String content = "这是web短信测试";
-		
-		cjsmsSend(content, mobile);
+		cjsmsSend(CommonUtils.getCode(6), mobile);
 	}
 }

@@ -15,7 +15,7 @@ import java.net.URL;
 public class WebserviceUtil {
 
     public static void main(String[] adsf) {
-        WebserviceUtil.post("http://www.baidu.com/s?wd=abc");
+        System.out.println(WebserviceUtil.post("http://www.baidu.com/s?wd=abc"));
     }
 
     /**
@@ -38,7 +38,7 @@ public class WebserviceUtil {
             url = new URL(urlStr);
             httpConn = (HttpURLConnection) url.openConnection();
             // 提交模式
-            httpConn.setRequestMethod("POST");
+            httpConn.setRequestMethod("GET");
             in = new BufferedReader(new InputStreamReader(httpConn.getInputStream(), "UTF-8"));
             String str = null;
             while ((str = in.readLine()) != null) {
