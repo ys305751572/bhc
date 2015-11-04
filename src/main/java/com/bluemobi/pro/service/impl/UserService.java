@@ -1,5 +1,9 @@
 package com.bluemobi.pro.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.RegisterUser;
@@ -58,4 +62,5 @@ public class UserService extends BaseService{
 	public void modifyUser(User user) throws Exception {
 		this.getBaseDao().update(PRIFIX + ".update", user);
 	}
+	
 }

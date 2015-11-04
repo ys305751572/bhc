@@ -78,7 +78,6 @@ public final class Result {
 		else if(data instanceof Map) {
 			result.data.put("object", BeanUtils.mapToMap((Map)data));
 		}
-		
 		else {
 			String objName = data.getClass().getSimpleName().toLowerCase();
 			result.data.put(objName, BeanUtils.beanToMap(data));
