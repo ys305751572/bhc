@@ -52,7 +52,8 @@ public class MemberApp {
 			if(StringUtils.isBlank(requestCode) || !requestCode.equals(code)) {
 				 return Result.failure(ErrorCode.ERROR_10);
 			 }
-			service.modifyUser(_user);
+			user.setUserId(_user.getUserId());
+			service.modifyUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();
