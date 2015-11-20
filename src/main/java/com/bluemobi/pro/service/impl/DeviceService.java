@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.Device;
+import com.bluemobi.pro.entity.UserDevice;
 import com.bluemobi.sys.service.BaseService;
+import com.bluemobi.utils.DateUtils;
 import com.bluemobi.utils.UUIDUtil;
 
 /**
@@ -25,7 +27,19 @@ public class DeviceService extends BaseService{
 	public String addDevice(Device device) throws Exception {
 		device.setDeviceId(UUIDUtil.generateUUID());
 		this.getBaseDao().save(PRIFIX + ".insert", device);
+		UserDevice ud = buildUserDevice(device);
+		ud.setId(UUIDUtil.generateUUID());
+		this.getBaseDao().save(PRIFIX + "insertBind", ud);
 		return device.getDeviceId();
+	}
+	
+	public UserDevice buildUserDevice(Device device) {
+		UserDevice ud = new UserDevice();
+		ud.setUser_id(device.getUserId());
+		ud.setDevice_id(ud.getDevice_id());
+		ud.setBindTime(DateUtils.getCurrentTime());
+		ud.setIsAdmin("0");
+		return ud;
 	}
 	
 	/**

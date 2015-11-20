@@ -114,4 +114,25 @@
 			#{bak1}
 		)
 	</insert>
+	
+	<!-- 新增绑定数据 -->
+	<insert id="insertBind" parameterType="com.bluemobi.pro.entity.UserDevice">
+		INSERT INTO
+			userdevice
+		(
+			id,
+			device_id,
+			user_id,
+			bindTime,
+			isAdmin
+		)
+		VALUES
+		(
+			#{id},
+			#{device_id},
+			#{user_id},
+			#{bindTime},
+			#{isAdmin}
+		)
+	</insert>
 </mapper> 
