@@ -1,5 +1,7 @@
 package com.bluemobi.pro.entity;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 专家医师
  * 
@@ -98,7 +100,7 @@ public class Doctor{
 	}
 
 	public String getHead() {
-		return head;
+		return StringUtils.isNotBlank(head) ? "http://114.215.186.32:8088/bhc_server" + head : "";
 	}
 
 	public void setHead(String head) {
