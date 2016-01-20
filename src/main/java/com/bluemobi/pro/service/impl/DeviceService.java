@@ -1,5 +1,6 @@
 package com.bluemobi.pro.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -26,17 +27,30 @@ public class DeviceService extends BaseService{
 	 */
 	public String addDevice(Device device) throws Exception {
 		device.setDeviceId(UUIDUtil.generateUUID());
-		this.getBaseDao().save(PRIFIX + ".insert", device);
-		UserDevice ud = buildUserDevice(device);
-		ud.setId(UUIDUtil.generateUUID());
-		this.getBaseDao().save(PRIFIX + "insertBind", ud);
+		device.setBak6(Timestamp.valueOf(DateUtils.getCurrentTime()));
+		if(!checkDevice(device)) {
+			// 检测该用户是否已经绑定此设备
+			this.getBaseDao().save(PRIFIX + ".insert", device);
+			UserDevice ud = buildUserDevice(device);
+			ud.setId(UUIDUtil.generateUUID());
+			this.getBaseDao().save(PRIFIX + ".insertBind", ud);
+		}
 		return device.getDeviceId();
+	}
+	
+	/**
+	 * 检测该用户是否已绑定此设备
+	 * @return
+	 * @throws Exception 
+	 */
+	private boolean checkDevice(Device device) throws Exception {
+		return (Integer)this.getBaseDao().get(PRIFIX + ".findBing", device) > 0 ? true : false;
 	}
 	
 	public UserDevice buildUserDevice(Device device) {
 		UserDevice ud = new UserDevice();
 		ud.setUser_id(device.getUserId());
-		ud.setDevice_id(ud.getDevice_id());
+		ud.setDevice_id(device.getDeviceId());
 		ud.setBindTime(DateUtils.getCurrentTime());
 		ud.setIsAdmin("0");
 		return ud;

@@ -1,6 +1,8 @@
 package com.bluemobi.pro.service.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
 import com.bluemobi.sys.service.BaseService;
+import com.bluemobi.utils.DateUtils;
 import com.bluemobi.utils.UUIDUtil;
 
 @Service
@@ -25,6 +28,7 @@ public class UserService extends BaseService{
 	public int addUser(RegisterUser user) throws Exception {
 		user.setUserId(UUIDUtil.generateUUID());
 		user.setBak4("0");
+		user.setBak5(Timestamp.valueOf(DateUtils.getCurrentTime()));
 		return this.getBaseDao().save(PRIFIX + ".insert", user);
 	}
 	

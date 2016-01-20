@@ -47,6 +47,18 @@
 			d.user_id = #{_parameter}
 	</select>
 	
+	<!-- 查询用户是否已绑定该设备 -->
+	<select id="findBing" parameterType="com.bluemobi.pro.entity.Device" resultType="java.lang.Integer">
+		SELECT
+			count(*)
+		FROM
+			device t
+		WHERE
+			t.user_id = #{userId}
+		AND
+			t.deviceSerial = #{deviceSerial}
+	</select>
+	
 	<!-- 删除设备 -->
 	<delete id="deleteByDeviceId" parameterType="string">
 		DELETE
@@ -100,7 +112,8 @@
 			deviceType,
 			deviceSerial,
 			version,
-			bak1
+			bak1,
+			bak6
 		)
 		VALUES
 		(
@@ -111,7 +124,8 @@
 			#{deviceType},
 			#{deviceSerial},
 			#{version},
-			#{bak1}
+			#{bak1},
+			#{bak6}
 		)
 	</insert>
 	
