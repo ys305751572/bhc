@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bluemobi.constant.Constant;
 import com.bluemobi.pro.entity.DetectionA;
 import com.bluemobi.pro.entity.DetectionQ;
 import com.bluemobi.pro.entity.DetectionT;
@@ -12,6 +13,7 @@ import com.bluemobi.pro.service.impl.DetectionService;
 import com.bluemobi.sys.page.Page;
 import com.bluemobi.utils.Result;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +47,10 @@ public class DetectionApp {
 		Page<DetectionT> page = null;
 		try {
 			page = service.pageDetection(params, currentPage, pageSize);
+			Collection<DetectionT> list = page.getRows();
+			for (DetectionT detectionT : list) {
+				detectionT.setImage(Constant.DOMAIN_IMAGE + detectionT.getImage());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();

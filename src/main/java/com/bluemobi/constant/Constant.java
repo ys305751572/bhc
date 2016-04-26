@@ -19,6 +19,8 @@ public class Constant {
     // 空间uhoem-face-test的默认域名
     public final static String domain = "http://7xkfb2.com2.z0.glb.qiniucdn.com/";
 
+    public final static String DOMAIN_IMAGE = "http://114.215.186.32:8088/bhc_server";
+    
 	/**
 	 * 删除标记
 	 */

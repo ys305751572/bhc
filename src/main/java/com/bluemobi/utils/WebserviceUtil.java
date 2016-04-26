@@ -15,7 +15,9 @@ import java.net.URL;
 public class WebserviceUtil {
 
     public static void main(String[] adsf) {
-        System.out.println(WebserviceUtil.post("http://www.baidu.com/s?wd=abc"));
+    	
+    	String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxde403ed748d32aa0&secret=68c70b5646ee66b12301b6a796c8f497";
+        System.out.println(WebserviceUtil.post(url));
     }
 
     /**

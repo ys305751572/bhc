@@ -14,9 +14,14 @@ public class SmsUtils {
 		
 		String content = "【健康管家】您的验证码为:" + code + ",请不要将验证码透露给其他人";
 		
-		final String url = "http://116.255.153.152:9999/sms.aspx";
-		final String account = "whgjkj";
-		final String password = "baicai626";
+//		final String url = "http://116.255.153.152:9999/sms.aspx";
+//		final String account = "whgjkj";
+//		final String password = "baicai626";
+		
+		final String url = "http://120.76.25.160:7788/sms.aspx";
+		final String account = "jyhgw";
+		final String password = "jyhgw123";
+		
 		final String action = "send";
 		final String sendTime = DateUtils.getCurrentTime();
 		
@@ -27,7 +32,7 @@ public class SmsUtils {
 			.append("action=")
 			.append(URLEncoder.encode(action, "utf-8"))
 			.append("&")
-			.append("userid=529")
+			.append("userid=20")
 			.append("&")
 			.append("account=")
 			.append(URLEncoder.encode(account, "utf-8"))
@@ -65,6 +70,6 @@ public class SmsUtils {
 	
 	public static void main(String[] args) {
 		String mobile = "13476107753";
-		cjsmsSend(CommonUtils.getCode(6), mobile);
+		cjsmsSend(CommonUtils.getCode(6), "13476107753","13006140281","15972129886","18801285391","18120574075");
 	}
 }

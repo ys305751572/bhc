@@ -1,5 +1,6 @@
 package com.bluemobi.pro.controller.api;
 
+import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bluemobi.constant.Constant;
 import com.bluemobi.pro.entity.Pathology;
 import com.bluemobi.pro.service.impl.PathologyService;
 import com.bluemobi.sys.page.Page;
@@ -42,6 +44,10 @@ public class LectureApp {
 		try {
 			params.put("type", "1"); // 设置类型为讲座
 			page = service.page(params, currentPage, pageSize);
+			Collection<Pathology> list = page.getRows();
+			for (Pathology pathology : list) {
+				pathology.setImage(Constant.DOMAIN_IMAGE + pathology.getImage());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();
@@ -61,6 +67,7 @@ public class LectureApp {
 		Pathology pathology2 = null;
 		try {
 			pathology2 = service.findById(pathology2);
+			pathology2.setImage(Constant.DOMAIN_IMAGE + pathology2.getImage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();
