@@ -1,11 +1,6 @@
 package com.bluemobi.pro.service.impl;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
 import com.bluemobi.pro.entity.RegisterUser;
