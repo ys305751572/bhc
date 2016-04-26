@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bluemobi.pro.entity.Signing">
+
+	<resultMap id="signingResultMap" type="com.bluemobi.pro.entity.Signing">
+		<id column="id" property="id" />
+		<result column="create_date" property="createDate" />
+		<result column="month" property="month" />
+		<association property="user" column="user_id" select="com.bluemobi.pro.service.impl.UserService.findById" />
+		<association property="doctor" column="doctor_id" select="com.bluemobi.pro.service.impl.DoctorService.findDoctorById2" />
+	</resultMap>
+
+	<!-- 根据用户ID查询签约医师 -->
+	<select id="findByUserId" parameterType="com.bluemobi.pro.entity.Signing" resultMap="signingResultMap">
+		SELECT
+		    t.id,
+		    t.month,
+		    t.create_date,
+			t.user_id,
+			t.doctor_id
+		FROM
+			signing t
+		WHERE
+		    t.user_id = #{userId}
+	</select>
+
+	<!-- 新增签约记录 -->
+	<insert id="insert" parameterType="com.bluemobi.pro.entity.Signing">
+		INSERT INTO
+			signing
+		(
+			`user_id`,
+			`doctor_id`,
+			`month`,
+			`create_date`,
+		)
+		values
+		(
+			#{user.id},
+			#{doctor.id},
+			#{month},
+			#{createDate}
+
+		)
+	</insert>
+
+	<!-- 清除签约记录 -->
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM signing where id = #{id}
+	</delete>
+</mapper>

@@ -35,7 +35,16 @@
 		<result column="maritalStatus" property="maritalStatus"  typeHandler="com.bluemobi.mybatis.StringIfNull"/>
 		<result column="isHighOrSugar" property="isHighOrSugar"  typeHandler="com.bluemobi.mybatis.StringIfNull"/>
 	</resultMap>
-	
+
+	<select id="findById" parameterType="java.lang.String" resultMap="findUserResultMap">
+		select
+			t.*
+        FROM
+            user t
+        WHERE
+            t.id = #{userId}
+	</select>
+
 	<!-- 新增老人端用户 -->
 	<insert id="insert" parameterType="com.bluemobi.pro.entity.User">
 		INSERT INTO

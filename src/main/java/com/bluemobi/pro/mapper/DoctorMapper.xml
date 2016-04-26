@@ -56,4 +56,22 @@
 		WHERE
 			t.ID = #{id}
 	</select>
+
+	<!-- 根据ID查询医生详细信息 -->
+	<select id="findDoctorById2" parameterType="java.lang.String" resultMap="doctorMap">
+		SELECT
+		t.ID,
+		t.NAME,
+		t.DETAIL,
+		t.DEPART,
+		t.DOMAIN,
+		t.HEAD,
+		t.LEVEL,
+		t.REWARD,
+		t.HOSPITAL
+		FROM
+		t_doctor t
+		WHERE
+		t.ID = #{id}
+	</select>
 </mapper> 
