@@ -46,8 +46,22 @@
 		)
 	</insert>
 
-	<!-- 清除签约记录 -->
+	<!-- 清除签约记录  -->
 	<delete id="delete" parameterType="java.lang.Long">
 		DELETE FROM signing where id = #{id}
 	</delete>
+	
+	<!-- 解除签约 里做逻辑删除，以免以后新增签约记录需求 -->
+	<update id="unSign" parameterType="java.util.Map">
+		UPDATE
+			sgining 
+		SET
+			is_sign = 1
+		WHERE
+			is_sign = 0
+		AND
+			doctor_id = #{doctorId}
+		AND
+			user_id = #{userId}
+	</update>
 </mapper>

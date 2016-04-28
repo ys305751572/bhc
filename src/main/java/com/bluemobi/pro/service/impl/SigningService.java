@@ -4,7 +4,10 @@ import com.bluemobi.pro.entity.Doctor;
 import com.bluemobi.pro.entity.Signing;
 import com.bluemobi.pro.entity.User;
 import com.bluemobi.sys.service.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,8 +24,6 @@ public class SigningService extends BaseService{
         Signing signing = this.getBaseDao().get(PREFIX + ".findByUserId",userId);
         if(signing != null) {
             doctor = signing.getDoctor();
-            // TODO 讲座是否翻页
-            // 如果翻页，讲座需要单独访问接口
         }
         return doctor;
     }
@@ -51,4 +52,18 @@ public class SigningService extends BaseService{
     }
 
 
+    /**
+     * 解除签约
+     * 这里做逻辑删除，以免以后新增签约记录需求
+     * @param userId
+     * @param doctorId
+     * @throws Exception 
+     */
+    public void unSign(String userId,String doctorId) throws Exception {
+    	
+    	Map<String,String> params = new HashMap<String,String>();
+    	params.put("userId", userId);
+    	params.put("doctorId",doctorId);
+    	this.getBaseDao().update(PREFIX + ".unSign", params);
+    }
 }
