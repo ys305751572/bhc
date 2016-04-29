@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Administrator on 2016/4/26.
@@ -34,7 +35,7 @@ public class SigningService extends BaseService{
      * @param doctorId
      * @throws Exception
      */
-    public void sign(String userId,String doctorId) throws Exception,IllegalAccessException{
+    public void sign(String userId,String doctorId,String sn) throws Exception,IllegalAccessException{
         Signing signing = this.getBaseDao().get(PREFIX + ".findByUserId",userId);
         if(signing != null) throw new IllegalAccessException();
 
@@ -47,6 +48,7 @@ public class SigningService extends BaseService{
         doctor.setId(doctorId);
         newSigning.setUser(user);
         newSigning.setDoctor(doctor);
+        newSigning.setSn(sn);
 
         this.getBaseDao().save(PREFIX + ".insert",newSigning);
     }
@@ -65,5 +67,19 @@ public class SigningService extends BaseService{
     	params.put("userId", userId);
     	params.put("doctorId",doctorId);
     	this.getBaseDao().update(PREFIX + ".unSign", params);
+    }
+    
+    /**
+     * 支付完成业务
+     * 1.修改订单状态
+     * 2.修改是否签约状态
+     * @throws Exception 
+     */
+    @Transactional
+    public void payComplate(String sn) throws Exception {
+    	Signing signing = this.getBaseDao().getObject(PREFIX + ".findBySn", sn);
+    	if(signing != null && signing.getId() != null) {
+    		this.getBaseDao().update(PREFIX + "payComplate", sn);
+    	}
     }
 }

@@ -36,13 +36,15 @@
 			`user_id`,
 			`doctor_id`,
 			`month`,
-			`create_date`,
+			`sn`,
+			`create_date`
 		)
 		values
 		(
 			#{user.id},
 			#{doctor.id},
 			#{month},
+			#{sn},
 			#{createDate}
 
 		)
@@ -65,5 +67,26 @@
 			doctor_id = #{doctorId}
 		AND
 			user_id = #{userId}
+	</update>
+	
+	<!-- 根据SN查询签约记录 -->
+	<select id="findBySn" parameterType="java.lang.String" parameterMap="signingResultMap">
+		SELECT
+			a.*
+		FROM
+			signing a
+		WHERE
+			a.sn = #{sn}
+	</select>
+	
+	<!-- 支付完成之后修改订单状态 -->
+	<update id="payComplate" parameterType="java.lang.String">
+		UPDATE
+			sgining a
+		SET
+			a.order_status = 1,
+		    a.is_sign = 1
+		WHERE
+			a.sn = #{sn}
 	</update>
 </mapper>

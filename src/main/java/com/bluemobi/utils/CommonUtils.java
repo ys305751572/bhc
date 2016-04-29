@@ -164,14 +164,18 @@ public class CommonUtils {
 	    }
 	    return result.toString();
 	}
-	
-	public static void main(String[] args) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("user", "yesong");
-		System.out.println(mapToXml(map));
-	}
 
 	public static String getSessionId() {
 		return null;
 	}
+	
+	  /**
+     * 生成订单号
+     */
+    public static String generateSn() {
+        Random r = new Random();
+        int random = r.nextInt(1000);
+        long current = System.currentTimeMillis();
+        return String.valueOf(current) + String.valueOf(random);
+    }
 }

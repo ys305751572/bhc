@@ -3,7 +3,7 @@ package com.bluemobi.pro.entity;
 import java.io.Serializable;
 
 /**
- * Created by Administrator on 2016/4/26.
+ * Created by yesong on 2016/4/26.
  */
 public class Signing implements Serializable{
 	
@@ -17,9 +17,29 @@ public class Signing implements Serializable{
 
     private Long createDate;
 
-    private Integer isSign ; // 是否签约 0:签约 1:解约
+    private String sn; // 订单号
     
-    public Integer getIsSign() {
+    private Integer orderStatus = 0; // 支付状态 0:待支付 1:已支付
+    
+    private Integer isSign = 0 ; // 是否签约 0:解约 1:签约 
+    
+    public String getSn() {
+		return sn;
+	}
+
+	public void setSn(String sn) {
+		this.sn = sn;
+	}
+
+	public Integer getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(Integer orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public Integer getIsSign() {
 		return isSign;
 	}
 
