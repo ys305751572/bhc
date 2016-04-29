@@ -25,14 +25,19 @@ import com.bluemobi.location.LocationUtils;
 import com.bluemobi.pro.entity.AolUser;
 import com.bluemobi.pro.entity.Complaint;
 import com.bluemobi.pro.entity.FeedBack;
+import com.bluemobi.pro.entity.Information;
+import com.bluemobi.pro.entity.Novice;
 import com.bluemobi.pro.entity.Question;
 import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
 import com.bluemobi.pro.service.impl.AolUserService;
 import com.bluemobi.pro.service.impl.ComplaintService;
 import com.bluemobi.pro.service.impl.FeedBackService;
+import com.bluemobi.pro.service.impl.InformationService;
+import com.bluemobi.pro.service.impl.NoviceService;
 import com.bluemobi.pro.service.impl.QuestionService;
 import com.bluemobi.pro.service.impl.UserService;
+import com.bluemobi.sys.page.Page;
 import com.bluemobi.utils.CommonUtils;
 import com.bluemobi.utils.ImageUtils;
 import com.bluemobi.utils.ParamUtils;
@@ -60,6 +65,12 @@ public class CommonsApp {
 	
 	@Autowired
 	private QuestionService questionService;
+	
+	@Autowired
+	private NoviceService noviceService;
+	
+	@Autowired
+	private InformationService informationService;
 	/**
 	 * 发送验证码
 	 * 
@@ -271,5 +282,46 @@ public class CommonsApp {
 			return Result.failure();
 		}
 		return Result.success(list);
+	}
+	
+	@RequestMapping(value = "novice", method = RequestMethod.POST)
+	@ResponseBody
+	public Result noviceList() {
+		List<Novice> list = null;
+		try {
+			list = noviceService.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
+		return Result.success(list);
+	}
+	
+	
+	@RequestMapping(value = "info/list", method = RequestMethod.POST)
+	@ResponseBody
+	public Result infoList(Integer pageNum,Integer pageSize) {
+		Page<Information> page = null;
+		try {
+			page = informationService.page(null, pageNum, pageSize);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
+		return Result.success(page);
+	}
+	
+	@RequestMapping(value = "info/detail", method = RequestMethod.POST)
+	@ResponseBody
+	public Result infoDetail(Integer id) {
+		
+		Information info = null;
+		try {
+			info = informationService.detail(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
+		return Result.success(info);
 	}
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bluemobi.pro.entity.Children">
+	
+	<resultMap type="com.bluemobi.pro.entity.Children" id="childrenResultMap">
+		<id column="id" property="id"/>
+		<result column="nickname" property="nickname"/>
+		<result column="mobile" property="mobile"/>
+		<result column="note" property="note"/>
+	</resultMap>
+
+	<select id="findList" parameterType="java.lang.String" resultMap="childrenResultMap">
+		SELECT
+			t.note,
+			c.id,
+			c.nickname,
+			c.mobile,
+		FROM
+			aolchild_relation t
+		LEFT JOIN
+			childrenuser c
+		ON
+			t.CHILD_ID = c.id
+		WHERE
+			t.AOL_USER_ID = #{userId}
+	</select>
+	
+	<update id="note" parameterType="java.util.Map">
+		UPDATE
+			aolchild_relation t
+		SET
+			t.note = #{note}
+		WHERE
+			t.AOL_USER_ID = #{userId}
+		AND
+			t.CHILD_ID = #{childId}
+	</update>
+</mapper> 

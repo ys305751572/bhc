@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bluemobi.pro.entity.Information">
+	
+	<resultMap type="com.bluemobi.pro.entity.Information" id="infoResultMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="path" property="path"/>
+		<result column="create_date" property="createDate"/>
+	</resultMap>
+	
+	<select id="findList" parameterType="java.util.Map" resultMap="infoResultMap">
+		SELECT
+			t.id,
+			t.title,
+			t.path,
+			t.create_date
+		FROM	
+			information t
+	</select>
+	
+	<select id="findDetail" parameterType="java.lang.Integer" resultMap="infoResultMap">
+		SELECT
+			t.id,
+			t.path,
+			t.title,
+			t.content,
+			t.create_date
+		FROM
+			information t
+		WHERE
+			t.id = #{id}
+	</select>
+</mapper> 
