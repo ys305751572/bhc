@@ -78,7 +78,9 @@
 			ts,
 			city,
 			maritalStatus,
-			isHighOrSugar
+			isHighOrSugar,
+			mh,
+			allergy
 		)
 		VALUES
 		(
@@ -110,7 +112,9 @@
 			#{ts},
 			#{city},
 			#{maritalStatus},
-			#{isHighOrSugar}
+			#{isHighOrSugar},
+			#{mh},
+			#{allergy}
 		)
 	</insert>
 	
@@ -210,6 +214,12 @@
 			</if>
 			<if test="isHighOrSugar != null and isHighOrSugar != ''">
 				isHighOrSugar = #{isHighOrSugar},
+			</if>
+			<if test="mh != null and mh != ''">
+				mh = #{mh},
+			</if>
+			<if test="allergy != null and allergy != ''">
+				allergy = #{allergy}
 			</if>
 		</set>
 		<where>

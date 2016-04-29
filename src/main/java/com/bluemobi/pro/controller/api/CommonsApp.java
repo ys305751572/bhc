@@ -1,6 +1,8 @@
 package com.bluemobi.pro.controller.api;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,17 +16,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bluemobi.cache.CacheService;
 import com.bluemobi.constant.ErrorCode;
 import com.bluemobi.location.Location;
 import com.bluemobi.location.LocationUtils;
 import com.bluemobi.pro.entity.AolUser;
+import com.bluemobi.pro.entity.Complaint;
 import com.bluemobi.pro.entity.FeedBack;
+import com.bluemobi.pro.entity.Question;
 import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
 import com.bluemobi.pro.service.impl.AolUserService;
+import com.bluemobi.pro.service.impl.ComplaintService;
 import com.bluemobi.pro.service.impl.FeedBackService;
+import com.bluemobi.pro.service.impl.QuestionService;
 import com.bluemobi.pro.service.impl.UserService;
 import com.bluemobi.utils.CommonUtils;
 import com.bluemobi.utils.ImageUtils;
@@ -48,6 +55,11 @@ public class CommonsApp {
 	@Autowired
 	private AolUserService aolUserService;
 
+	@Autowired
+	private ComplaintService complaintService;
+	
+	@Autowired
+	private QuestionService questionService;
 	/**
 	 * 发送验证码
 	 * 
@@ -142,10 +154,20 @@ public class CommonsApp {
 
 	@RequestMapping(value = "feedback", method = RequestMethod.POST)
 	@ResponseBody
-	public Result feedback(FeedBack feedBack) {
+	public Result feedback(FeedBack feedBack,MultipartHttpServletRequest request) {
 
 		try {
-			fservice.insert(feedBack);
+			
+			List<String> pathList = new ArrayList<String>();
+			Iterator<String> fileNames = request.getFileNames();
+			while(fileNames.hasNext()) {
+				String filename = fileNames.next();
+				MultipartFile file = request.getFile(filename);
+				String path = ImageUtils.saveImage(file, false)[0];
+				pathList.add(path);
+			}
+			
+			fservice.insert(feedBack,pathList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();
@@ -219,5 +241,35 @@ public class CommonsApp {
 			return Result.failure();
 		}
 		return Result.success(aolUserList);
+	}
+	
+	/**
+	 * 投诉
+	 * @return
+	 */
+	@RequestMapping(value = "complaint", method = RequestMethod.POST)
+	@ResponseBody
+	public Result complaint(Complaint complaint) {
+		try {
+			complaintService.insert(complaint);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
+		return Result.success();
+	}
+	
+
+	@RequestMapping(value = "questionList",method = RequestMethod.POST)
+	@ResponseBody
+	public Result questionList() {
+		List<Question> list = null;
+		try {
+			questionService.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
+		return Result.success(list);
 	}
 }

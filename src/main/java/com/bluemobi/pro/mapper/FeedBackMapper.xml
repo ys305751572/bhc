@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<!-- 新增反馈 -->
-	<insert id="insert" parameterType="com.bluemobi.pro.entity.FeedBack">
+	<insert id="insert" parameterType="com.bluemobi.pro.entity.FeedBack" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO
 			feedback
 		(

@@ -96,6 +96,13 @@
 		<if test="dateUp != null and dateUp != ''">
 			AND bak6 &lt; #{dateUp}
 		</if>
+		<if test="measureType !=null and measureType != ''">
+			AND
+				measureType = #{measureType}
+		</if>
 		ORDER BY bak6 DESC
+		<if test="measureType !=null and measureType != ''">
+			limit 7
+		</if>
 	</select>
 </mapper> 

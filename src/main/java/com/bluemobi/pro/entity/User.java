@@ -75,6 +75,26 @@ public class User {
 	private String maritalStatus;
 	
 	private String isHighOrSugar;
+	
+	private String mh; // 病史
+	
+	private String allergy; // 有无过敏
+	
+	public String getMh() {
+		return mh;
+	}
+
+	public void setMh(String mh) {
+		this.mh = mh;
+	}
+
+	public String getAllergy() {
+		return allergy;
+	}
+
+	public void setAllergy(String allergy) {
+		this.allergy = allergy;
+	}
 
 	public Integer getDr() {
 		return dr;
