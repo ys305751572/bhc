@@ -34,9 +34,9 @@ public class SigningService extends BaseService{
      * @param doctorId
      * @throws Exception
      */
-    public void sign(String userId,String doctorId) throws Exception {
+    public void sign(String userId,String doctorId) throws Exception,IllegalAccessException{
         Signing signing = this.getBaseDao().get(PREFIX + ".findByUserId",userId);
-        if(signing != null) throw new IllegalAccessError();
+        if(signing != null) throw new IllegalAccessException();
 
         Signing newSigning = new Signing();
 

@@ -6,8 +6,9 @@ import java.io.Serializable;
  * Created by Administrator on 2016/4/26.
  */
 public class Signing implements Serializable{
-
-    private Long id;
+	
+	private static final long serialVersionUID = -7716606982466545225L;
+	private Long id;
     private User user;
 
     private Doctor doctor;
@@ -16,7 +17,17 @@ public class Signing implements Serializable{
 
     private Long createDate;
 
-    public Long getId() {
+    private Integer isSign ; // 是否签约 0:签约 1:解约
+    
+    public Integer getIsSign() {
+		return isSign;
+	}
+
+	public void setIsSign(Integer isSign) {
+		this.isSign = isSign;
+	}
+
+	public Long getId() {
         return id;
     }
 

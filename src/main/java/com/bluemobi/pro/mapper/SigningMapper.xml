@@ -24,6 +24,8 @@
 			signing t
 		WHERE
 		    t.user_id = #{userId}
+		AND
+			
 	</select>
 
 	<!-- 新增签约记录 -->
