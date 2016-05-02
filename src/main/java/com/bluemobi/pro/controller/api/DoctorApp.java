@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemobi.pro.entity.Doctor;
+import com.bluemobi.pro.entity.Signing;
 import com.bluemobi.pro.service.impl.DoctorService;
+import com.bluemobi.pro.service.impl.SigningService;
 import com.bluemobi.sys.page.Page;
 import com.bluemobi.utils.Result;
 
@@ -25,6 +27,9 @@ public class DoctorApp {
 
 	@Autowired
 	private DoctorService service;
+	
+	@Autowired
+	private SigningService signingService;
 	
 	/**
 	 * 查询医生列表
@@ -63,5 +68,29 @@ public class DoctorApp {
 			return Result.failure();
 		}
 		return Result.success(doctor2);
+	}
+	
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
+	@ResponseBody
+	public Result home(String userId) {
+		
+		Doctor doctor = null;
+		try {
+			Signing signing = signingService.findByUserId(userId);
+			if(signing != null) {
+				doctor = signing.getDoctor();
+			}
+			else {
+				doctor = new Doctor();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Result.success(doctor);
 	}
 }

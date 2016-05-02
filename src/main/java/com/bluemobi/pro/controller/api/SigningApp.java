@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bluemobi.constant.ErrorCode;
+import com.bluemobi.pro.entity.AccountsConfig;
 import com.bluemobi.pro.entity.Doctor;
+import com.bluemobi.pro.service.impl.AccountsConfigService;
 import com.bluemobi.pro.service.impl.SigningService;
 import com.bluemobi.utils.CommonUtils;
 import com.bluemobi.utils.PayConfig;
@@ -26,6 +29,9 @@ public class SigningApp {
 	
 	@Autowired
 	private SigningService service;
+	
+	@Autowired
+	private AccountsConfigService accountsConfigService;
 
 	/**
 	 * 签约医师详情 没有签约医师则返回NULL
@@ -55,6 +61,7 @@ public class SigningApp {
 	 * @return
 	 */
 	@RequestMapping(value = "/sign")
+	@ResponseBody
 	public Result payConfig(HttpServletRequest request, HttpServletResponse response, String userId, String doctorId,
 			String payWay, Integer month) {
 
@@ -66,8 +73,8 @@ public class SigningApp {
 		Map<String,Object> configMap = new HashMap<String,Object>();
 		try {
 			String sn = CommonUtils.generateSn();
-			service.sign(userId, doctorId,sn);
-			configMap = PayConfig.config(request, response, sn, totalFee, payWay);
+			service.sign(userId, doctorId,sn,month);
+//			configMap = PayConfig.config(request, response, sn, totalFee, payWay);
 			
 		} 
 		catch (IllegalAccessException e) {
@@ -88,6 +95,7 @@ public class SigningApp {
 	 * @return
 	 */
 	@RequestMapping(value = "/unsign")
+	@ResponseBody
 	public Result unSigning(String userId, String doctorId) {
 
 		try {
@@ -97,5 +105,18 @@ public class SigningApp {
 			return Result.failure();
 		}
 		return Result.success();
+	}
+	
+	@RequestMapping(value = "accountsConfig", method = RequestMethod.POST)
+	@ResponseBody
+	public Result accountConfig() {
+		
+		try {
+			AccountsConfig config = accountsConfigService.find();
+			return Result.success(config);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.failure();
+		}
 	}
 }

@@ -14,9 +14,8 @@
 	<select id="findList" parameterType="java.lang.String" resultMap="childrenResultMap">
 		SELECT
 			t.note,
-			c.id,
 			c.nickname,
-			c.mobile,
+			c.mobile
 		FROM
 			aolchild_relation t
 		LEFT JOIN
@@ -31,7 +30,7 @@
 		UPDATE
 			aolchild_relation t
 		SET
-			t.note = #{note}
+			t.note = #{noteName}
 		WHERE
 			t.AOL_USER_ID = #{userId}
 		AND

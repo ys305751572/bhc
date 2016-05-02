@@ -13,6 +13,16 @@ public class Complaint implements Serializable{
 	
 	private String content;
 	
+	private Long createDate;
+
+	public Long getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Long createDate) {
+		this.createDate = createDate;
+	}
+
 	public String getDoctorId() {
 		return doctorId;
 	}

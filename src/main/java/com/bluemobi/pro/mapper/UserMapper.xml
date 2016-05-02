@@ -37,12 +37,22 @@
 	</resultMap>
 
 	<select id="findById" parameterType="java.lang.String" resultMap="findUserResultMap">
-		select
-			t.*
+			SELECT
+			t.user_id,
+			t.mobile,
+			t.email,
+			t.headPic,
+			t.name,
+			t.sex,
+			t.birthday,
+			t.height,
+			t.weight,
+			t.password,
+			t.bak1
         FROM
             user t
         WHERE
-            t.id = #{userId}
+            t.user_id = #{userId}
 	</select>
 
 	<!-- 新增老人端用户 -->

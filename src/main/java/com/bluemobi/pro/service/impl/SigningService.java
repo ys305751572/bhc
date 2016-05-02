@@ -4,10 +4,8 @@ import com.bluemobi.pro.entity.Doctor;
 import com.bluemobi.pro.entity.Signing;
 import com.bluemobi.pro.entity.User;
 import com.bluemobi.sys.service.BaseService;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +33,7 @@ public class SigningService extends BaseService{
      * @param doctorId
      * @throws Exception
      */
-    public void sign(String userId,String doctorId,String sn) throws Exception,IllegalAccessException{
+    public void sign(String userId,String doctorId,String sn,Integer month) throws Exception,IllegalAccessException{
         Signing signing = this.getBaseDao().get(PREFIX + ".findByUserId",userId);
         if(signing != null) throw new IllegalAccessException();
 
@@ -48,7 +46,9 @@ public class SigningService extends BaseService{
         doctor.setId(doctorId);
         newSigning.setUser(user);
         newSigning.setDoctor(doctor);
+        newSigning.setMonth(month);
         newSigning.setSn(sn);
+        newSigning.setCreateDate(System.currentTimeMillis());
 
         this.getBaseDao().save(PREFIX + ".insert",newSigning);
     }
@@ -82,4 +82,8 @@ public class SigningService extends BaseService{
     		this.getBaseDao().update(PREFIX + "payComplate", sn);
     	}
     }
-}
+    
+    public Signing findByUserId(String userId) throws Exception {
+    	return this.getBaseDao().getObject(PREFIX + ".findByUserId", userId);
+    }
+ }

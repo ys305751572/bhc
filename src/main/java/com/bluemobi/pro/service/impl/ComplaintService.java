@@ -11,6 +11,7 @@ public class ComplaintService extends BaseService{
 	private static final String PRIFIX = Complaint.class.getName();
 	
 	public void insert(Complaint complaint) throws Exception {
+		complaint.setCreateDate(System.currentTimeMillis());
 		this.getBaseDao().save(PRIFIX + ".insert", complaint);
 	}
 }

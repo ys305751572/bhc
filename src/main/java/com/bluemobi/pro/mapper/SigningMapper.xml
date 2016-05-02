@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<!-- 根据用户ID查询签约医师 -->
-	<select id="findByUserId" parameterType="com.bluemobi.pro.entity.Signing" resultMap="signingResultMap">
+	<select id="findByUserId" parameterType="java.lang.String" resultMap="signingResultMap">
 		SELECT
 		    t.id,
 		    t.month,
@@ -24,8 +24,6 @@
 			signing t
 		WHERE
 		    t.user_id = #{userId}
-		AND
-			
 	</select>
 
 	<!-- 新增签约记录 -->
@@ -41,7 +39,7 @@
 		)
 		values
 		(
-			#{user.id},
+			#{user.userId},
 			#{doctor.id},
 			#{month},
 			#{sn},
@@ -58,11 +56,11 @@
 	<!-- 解除签约 里做逻辑删除，以免以后新增签约记录需求 -->
 	<update id="unSign" parameterType="java.util.Map">
 		UPDATE
-			sgining 
+			signing 
 		SET
-			is_sign = 1
-		WHERE
 			is_sign = 0
+		WHERE
+			is_sign = 1
 		AND
 			doctor_id = #{doctorId}
 		AND
@@ -70,7 +68,7 @@
 	</update>
 	
 	<!-- 根据SN查询签约记录 -->
-	<select id="findBySn" parameterType="java.lang.String" parameterMap="signingResultMap">
+	<select id="findBySn" parameterType="java.lang.String" resultMap="signingResultMap">
 		SELECT
 			a.*
 		FROM

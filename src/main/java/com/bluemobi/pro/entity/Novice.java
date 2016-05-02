@@ -7,11 +7,9 @@ import java.io.Serializable;
  * @author yesong
  *
  */
-public class Novice implements Serializable{
+public class Novice {
 
-	private static final long serialVersionUID = 8758323383336747350L;
-
-	private Integer id;
+	private Long id;
 	
 	private String content;
 	
@@ -19,11 +17,12 @@ public class Novice implements Serializable{
 	
 	private Integer index; // 顺序
 
-	public Integer getId() {
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

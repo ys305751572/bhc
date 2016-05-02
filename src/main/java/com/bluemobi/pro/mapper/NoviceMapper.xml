@@ -20,7 +20,7 @@
 			t.path
 		FROM
 			novice t
-		ORDER
+		ORDER BY
 			t.index ASC
 	</select>
 </mapper> 

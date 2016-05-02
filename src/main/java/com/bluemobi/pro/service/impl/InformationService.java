@@ -14,7 +14,7 @@ public class InformationService extends BaseService{
 	private static final String PRIFIX = Information.class.getName();
 	
 	public Page<Information> page(Map<String,Object> params,int currentPage,int pagesize) {
-		return this.getBaseDao().page(PRIFIX + ".page", params, currentPage, pagesize);
+		return this.getBaseDao().page(PRIFIX + ".findList", params, currentPage, pagesize);
 	}
 	
 	public Information detail(Integer id) throws Exception {

@@ -11,13 +11,15 @@
 		(
 			`user_id`,
 			`doctor_id`,
-			`content`
+			`content`，
+			`create_date`
 		)
 		VALUES
 		(
 			#{userId},
 			#{doctorId},
-			#{content}
+			#{content},
+			#{createDate}
 		)
 	</insert>
 </mapper> 

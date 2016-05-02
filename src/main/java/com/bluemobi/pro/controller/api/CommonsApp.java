@@ -30,6 +30,7 @@ import com.bluemobi.pro.entity.Novice;
 import com.bluemobi.pro.entity.Question;
 import com.bluemobi.pro.entity.RegisterUser;
 import com.bluemobi.pro.entity.User;
+import com.bluemobi.pro.service.impl.AccountsConfigService;
 import com.bluemobi.pro.service.impl.AolUserService;
 import com.bluemobi.pro.service.impl.ComplaintService;
 import com.bluemobi.pro.service.impl.FeedBackService;
@@ -71,6 +72,8 @@ public class CommonsApp {
 	
 	@Autowired
 	private InformationService informationService;
+	
+
 	/**
 	 * 发送验证码
 	 * 
@@ -276,7 +279,7 @@ public class CommonsApp {
 	public Result questionList() {
 		List<Question> list = null;
 		try {
-			questionService.findAll();
+			list = questionService.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();
@@ -301,9 +304,14 @@ public class CommonsApp {
 	@RequestMapping(value = "info/list", method = RequestMethod.POST)
 	@ResponseBody
 	public Result infoList(Integer pageNum,Integer pageSize) {
+		
+		Integer currentPage = pageNum == null ? 1 : pageNum;
+		pageSize = pageSize == null ? 10 : pageSize;
+
 		Page<Information> page = null;
 		try {
-			page = informationService.page(null, pageNum, pageSize);
+			Map<String,Object> params = new HashMap<String,Object>();
+			page = informationService.page(params, currentPage, pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.failure();

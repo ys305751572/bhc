@@ -1,26 +1,23 @@
 package com.bluemobi.pro.entity;
 
-import java.io.Serializable;
-
 /**
  * 
  * @author yesong
  *
  */
-public class Question implements Serializable{
-	private static final long serialVersionUID = 4968810246956371299L;
-
-	private Integer id;
+public class Question {
+	private Long id;
 	
 	private String question;
 	
 	private String answer;
 
-	public Integer getId() {
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
