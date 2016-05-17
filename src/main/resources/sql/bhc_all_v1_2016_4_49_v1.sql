@@ -4583,6 +4583,7 @@ CREATE TABLE `t_doctor` (
   `TYPE` tinyint(1) DEFAULT NULL COMMENT '类型 0:专家 1:家庭医生',
   `REWARD` varchar(2000) DEFAULT NULL COMMENT '获得奖励',
   `HOSPITAL` varchar(2000) DEFAULT NULL COMMENT '所在医院',
+  `price` double default 0 comment '讲座价格/月',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
