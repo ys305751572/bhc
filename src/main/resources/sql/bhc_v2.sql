@@ -2,8 +2,8 @@ USE `aal`;
 
 
 alter table aolchild_relation add `note`  varchar(50) default '';
-alter table t_pathology add `doctor_id`  varchar(50) default '';
-
+--alter table t_pathology add `doctor_id`  varchar(50) default '';
+alter table t_doctor add `price` double default 0;
 
 /*Table structure for table `adspublish` */
 
