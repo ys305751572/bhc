@@ -11,7 +11,7 @@
 		(
 			`user_id`,
 			`doctor_id`,
-			`content`，
+			`content`,
 			`create_date`
 		)
 		VALUES

@@ -97,9 +97,11 @@ public class CommonsApp {
 			code = CommonUtils.getCode(6);
 
 			String mobile = params.get("mobile").toString();
+			String[] mobiles = new String[1];
+			mobiles[0] = mobile;
 //			String result = JavaSmsApi.sendShortMessage(mobile, code);
 			// 成功
-			if (SmsUtils.cjsmsSend(code, mobile)) {
+			if (SmsUtils.cjsmsSend(code, mobiles)) {
 				cacheService.put(mobile, code);
 				return Result.success();
 			}

@@ -55,6 +55,18 @@ public class Measure{
 	
 	private String dateUp;
 	
+	
+	private Integer type;
+	
+	
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
 	public String getDateDown() {
 		return dateDown;
 	}

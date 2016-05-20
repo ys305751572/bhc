@@ -101,7 +101,7 @@
 				measureType = #{measureType}
 		</if>
 		ORDER BY bak6 DESC
-		<if test="measureType !=null and measureType != ''">
+		<if test="type !=null and type != ''">
 			limit 7
 		</if>
 	</select>

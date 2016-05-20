@@ -48,6 +48,7 @@ public class SigningService extends BaseService{
         newSigning.setDoctor(doctor);
         newSigning.setMonth(month);
         newSigning.setSn(sn);
+        newSigning.setIsSign(1);
         newSigning.setCreateDate(System.currentTimeMillis());
 
         this.getBaseDao().save(PREFIX + ".insert",newSigning);

@@ -103,4 +103,8 @@ public class DateUtils {
 		return sdf.format(new Date());
 	}
 	
+	public static String getCurrentTime(String format) {
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(new Date());
+	}
 }

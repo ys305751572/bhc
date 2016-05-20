@@ -24,6 +24,8 @@
 			signing t
 		WHERE
 		    t.user_id = #{userId}
+		AND
+			t.is_sign = 1
 	</select>
 
 	<!-- 新增签约记录 -->
@@ -35,6 +37,7 @@
 			`doctor_id`,
 			`month`,
 			`sn`,
+			`is_sign`,
 			`create_date`
 		)
 		values
@@ -43,6 +46,7 @@
 			#{doctor.id},
 			#{month},
 			#{sn},
+			#{isSign},
 			#{createDate}
 
 		)

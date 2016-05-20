@@ -65,17 +65,16 @@ public class SigningApp {
 	public Result payConfig(HttpServletRequest request, HttpServletResponse response, String userId, String doctorId,
 			String payWay, Integer month) {
 
-		if (month <= DEFAULT_MONTH) {
-			return Result.failure(ErrorCode.ERROR_15);
-		}
+		
 		Double totalFee = (month - DEFAULT_MONTH) <= 0 ? 0.0 : ((month - DEFAULT_MONTH) * 100.0);
 		
 		Map<String,Object> configMap = new HashMap<String,Object>();
 		try {
 			String sn = CommonUtils.generateSn();
 			service.sign(userId, doctorId,sn,month);
-//			configMap = PayConfig.config(request, response, sn, totalFee, payWay);
-			
+			if (month > DEFAULT_MONTH) {
+//				configMap = PayConfig.config(request, response, sn, totalFee, payWay);
+			}
 		} 
 		catch (IllegalAccessException e) {
 			e.printStackTrace();
