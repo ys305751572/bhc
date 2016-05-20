@@ -38,6 +38,7 @@
 			`month`,
 			`sn`,
 			`is_sign`,
+			`order_status`,
 			`create_date`
 		)
 		values
@@ -47,6 +48,7 @@
 			#{month},
 			#{sn},
 			#{isSign},
+			#{orderStatus},
 			#{createDate}
 
 		)

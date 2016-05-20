@@ -33,7 +33,7 @@ public class SigningService extends BaseService{
      * @param doctorId
      * @throws Exception
      */
-    public void sign(String userId,String doctorId,String sn,Integer month) throws Exception,IllegalAccessException{
+    public void sign(String userId,String doctorId,String sn,Integer month,Integer isSign,Integer orderStatus) throws Exception,IllegalAccessException{
         Signing signing = this.getBaseDao().get(PREFIX + ".findByUserId",userId);
         if(signing != null) throw new IllegalAccessException();
 
@@ -48,7 +48,8 @@ public class SigningService extends BaseService{
         newSigning.setDoctor(doctor);
         newSigning.setMonth(month);
         newSigning.setSn(sn);
-        newSigning.setIsSign(1);
+        newSigning.setIsSign(isSign);
+        newSigning.setOrderStatus(orderStatus);
         newSigning.setCreateDate(System.currentTimeMillis());
 
         this.getBaseDao().save(PREFIX + ".insert",newSigning);

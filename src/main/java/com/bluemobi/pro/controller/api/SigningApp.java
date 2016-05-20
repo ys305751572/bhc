@@ -71,9 +71,12 @@ public class SigningApp {
 		Map<String,Object> configMap = new HashMap<String,Object>();
 		try {
 			String sn = CommonUtils.generateSn();
-			service.sign(userId, doctorId,sn,month);
+			
 			if (month > DEFAULT_MONTH) {
-//				configMap = PayConfig.config(request, response, sn, totalFee, payWay);
+				service.sign(userId, doctorId,sn,month,0,0);
+				configMap = PayConfig.config(request, response, sn, totalFee, payWay);
+			}else {
+				service.sign(userId, doctorId,sn,month,1,1);
 			}
 		} 
 		catch (IllegalAccessException e) {

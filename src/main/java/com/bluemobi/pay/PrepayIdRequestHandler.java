@@ -84,7 +84,7 @@ public class PrepayIdRequestHandler extends RequestHandler {
 		}
 		sb.append("key=").append(ConstantUtil.API_KEY);
 		
-		String appsign = MD5Util.MD5Encode(sb.toString(), null).toUpperCase();
+		String appsign = MD5Util.MD5Encode(sb.toString(), "UTF-8").toUpperCase();
 		System.out.println("appsign:" + appsign);
 		return appsign;
 	}

@@ -7,18 +7,18 @@ public class ConstantUtil {
 	
 	//��ʼ��
 //	public static String APP_ID = "wxd930ea5d5a258f4f";//΢�ſ���ƽ̨Ӧ��id
-	public static String APP_ID = "wxf4b70027ec00a7dc";// �ͻ�
+	public static String APP_ID = "wxa5816307ed68c745";// �ͻ�
 //	public static String APP_SECRET = "db426a9829e4b49a0dcac7b4162da6b6";//Ӧ�ö�Ӧ��ƾ֤
-	public static String APP_SECRET = "97ffe50dd6e8cfbe9de22e5302026fa9";// �ͻ�
+	public static String APP_SECRET = "cdafb0a30b941ccefb26d883b7172cfc";// �ͻ�
 	                                   
 	//Ӧ�ö�Ӧ����Կ
 //	public static String APP_KEY = "L8LrMqqeGRxST5reouB0K66CaYAWpqhAVsq7ggKkxHCOastWksvuX1uvmvQclxaHoYd3ElNBrNO2DHnnzgfVG9Qs473M3DTOZug5er46FhuGofumV8H2FVR9qkjSlC5K";
 	public static String APP_KEY = "";
 //	public static String PARTNER = "1900000109";//�Ƹ�ͨ�̻���
-	public static String PARTNER = "1269932701";// �ͻ�
+	public static String PARTNER = "1273138101";// �ͻ�
 	
 //	public static String PARTNER_KEY = "8934e7d15453e97507ef794cf7b0519d";//�̻��Ŷ�Ӧ����Կ
-	public static String API_KEY = "Uhoem20151008123weixin4000279600";//�̻�
+	public static String API_KEY = "F6CBD525AC3EBD3638BF7C7DCF3B145F";//�̻�
 	public static String TOKENURL = "https://api.weixin.qq.com/cgi-bin/token";//��ȡaccess_token��Ӧ��url
 	public static String GRANT_TYPE = "client_credential";//�����̶�ֵ 
 	public static String EXPIRE_ERRCODE = "42001";//access_tokenʧЧ�����󷵻ص�errcode

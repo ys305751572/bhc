@@ -10,8 +10,8 @@ import com.bluemobi.pay.excute.PayRequest;
 
 public class PayConfig {
 
-	public final static String NOTIFY_URL_WEIXIN = "";
-	public final static String NOTIFY_URL_ALIPAY = "";
+	public final static String NOTIFY_URL_WEIXIN = "http://121.40.63.108:8081/app/pay/weixiNotify";
+	public final static String NOTIFY_URL_ALIPAY = "http://121.40.63.108:8081/app/pay/alipayNotify";
 	/**
 	 * 
 	 * @param request

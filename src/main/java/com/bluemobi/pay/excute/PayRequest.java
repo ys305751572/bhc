@@ -34,7 +34,7 @@ public class PayRequest {
         if (!"".equals(token)) {
             prepayReqHandler.setParameter("appid", ConstantUtil.APP_ID);
 
-            prepayReqHandler.setParameter("body", "还款支付");
+            prepayReqHandler.setParameter("body", "签约支付");
             prepayReqHandler.setParameter("device_info", ConstantUtil.DEVICE_INFO);
             prepayReqHandler.setParameter("fee_type", "CNY");
             prepayReqHandler.setParameter("mch_id", ConstantUtil.PARTNER);
@@ -42,8 +42,10 @@ public class PayRequest {
             prepayReqHandler.setParameter("nonce_str", noncestr);
             prepayReqHandler.setParameter("notify_url", notifyUrl);
             prepayReqHandler.setParameter("out_trade_no", out_trade_no);
-            prepayReqHandler.setParameter("spbill_create_ip", CommonUtils.getRealAddress(request));
-			prepayReqHandler.setParameter("total_fee", request.getAttribute("fee").toString());
+//            prepayReqHandler.setParameter("spbill_create_ip", CommonUtils.getRealAddress(request));
+            prepayReqHandler.setParameter("spbill_create_ip", "4.16.2.73");
+			prepayReqHandler.setParameter("total_fee", "1");
+			//prepayReqHandler.setParameter("total_fee", request.getAttribute("fee").toString());
             prepayReqHandler.setParameter("trade_type", ConstantUtil.TRADE_TYPE);
 
             String sign = prepayReqHandler.createMD5Sign();
