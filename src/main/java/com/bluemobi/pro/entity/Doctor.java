@@ -26,7 +26,16 @@ public class Doctor{
 	private Integer type; // 类型 0:专家 1:家庭医生
 	private String reward; // 获得奖励
 	private String hospital; // 所在医院
+	private Double price;
 	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	public String getReward() {
 		return reward;
 	}

@@ -6,7 +6,7 @@
 
 	<resultMap type="com.bluemobi.pro.entity.Novice" id="noviceResultMap">
 		<id column="id" property="id"/>
-		<result column="index" property="index"/>
+		<result column="index2" property="index"/>
 		<result column="content" property="content"/>
 		<result column="path" property="path"/>
 	</resultMap>
@@ -15,7 +15,7 @@
 	<select id="findAllNovice" resultMap="noviceResultMap">
 		SELECT
 			t.id,
-			t.index,
+			t.index2,
 			t.content,
 			t.path
 		FROM

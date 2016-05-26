@@ -19,6 +19,7 @@
 		<result column="BIRTHDAY" property="birthday" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
 		<result column="ONLINE" property="online" typeHandler="com.bluemobi.mybatis.StringIfNull"/>
 		<result column="TYPE" property="type" typeHandler="com.bluemobi.mybatis.IntegerIfNull"/>
+		<result column="price" property="price" typeHandler="com.bluemobi.mybatis.DoubleIfNull"/>
 	</resultMap>
 	
 	<!-- 家庭医生列表 -->
@@ -50,7 +51,8 @@
 			t.HEAD,
 			t.LEVEL, 
 			t.REWARD,
-			t.HOSPITAL
+			t.HOSPITAL,
+			t.price
 		FROM
 			t_doctor t
 		WHERE

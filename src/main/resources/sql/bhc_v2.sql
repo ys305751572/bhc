@@ -5,6 +5,9 @@ alter table aolchild_relation add `note`  varchar(50) default '';
 --alter table t_pathology add `doctor_id`  varchar(50) default '';
 alter table t_doctor add `price` double default 0;
 
+alter table feedback add `create_date` bigint default 0;
+alter table feedback add `modify_date` bigint default 0;
+
 /*Table structure for table `adspublish` */
 
 DROP TABLE IF EXISTS `signing`;
@@ -28,6 +31,7 @@ CREATE TABLE `question` (
   `question` varchar(50) default '' comment '问题',
   `answer` varchar(500) default '' comment '答案',
   `create_date` bigint comment '创建时间',
+  `modify_date` bigint comment '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,9 +43,10 @@ DROP TABLE IF EXISTS `image`;
 
 CREATE TABLE `image` (
   `id` bigint(32) NOT NULL AUTO_INCREMENT,
-  `path` varchar(200) default '' comment '问题',
-  `feekback_id` varchar(500) default '' comment '答案',
+  `path` varchar(200) default '' comment '路径',
+  `feekback_id` varchar(500) default '' comment '反馈ID',
   `create_date` bigint comment '创建时间',
+  `modify_date` bigint comment,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,6 +58,7 @@ CREATE TABLE `information` (
   `content` varchar(1000) default '' comment '内容',
   `path` varchar(200) default '' comment '图片url',
   `create_date` bigint comment '创建时间',
+  `modify_date` bigint comment '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,6 +77,7 @@ CREATE TABLE `novice` (
   `path` varchar(200) default '' comment '图片url',
   `index` int(2) default 1 comment '序号 从小到大排序',
   `create_date` bigint comment '创建时间',
+  `modify_date` bigint comment '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -90,6 +97,7 @@ CREATE TABLE `complaint` (
   `doctor_id` varchar(32) default '' comment '医师ID',
   `content` varchar(1000) default '' comment '内容',
   `create_date` bigint comment '创建时间',
+  `modify_date` bigint comment '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

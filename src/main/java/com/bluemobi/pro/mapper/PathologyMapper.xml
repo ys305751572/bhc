@@ -23,7 +23,7 @@
 			t.URL,
 			t.CREATE_DATE
 		FROM
-			t_pathology t
+			t_pathology_v2 t
 		WHERE
 			1 = 1
 		<if test="type != null and type != ''">

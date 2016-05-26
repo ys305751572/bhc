@@ -16,6 +16,7 @@ import com.bluemobi.constant.ErrorCode;
 import com.bluemobi.pro.entity.AccountsConfig;
 import com.bluemobi.pro.entity.Doctor;
 import com.bluemobi.pro.service.impl.AccountsConfigService;
+import com.bluemobi.pro.service.impl.DoctorService;
 import com.bluemobi.pro.service.impl.SigningService;
 import com.bluemobi.utils.CommonUtils;
 import com.bluemobi.utils.PayConfig;
@@ -32,6 +33,9 @@ public class SigningApp {
 	
 	@Autowired
 	private AccountsConfigService accountsConfigService;
+	
+	@Autowired
+	private DoctorService doctorService;
 
 	/**
 	 * 签约医师详情 没有签约医师则返回NULL
@@ -64,9 +68,16 @@ public class SigningApp {
 	@ResponseBody
 	public Result payConfig(HttpServletRequest request, HttpServletResponse response, String userId, String doctorId,
 			String payWay, Integer month) {
-
 		
-		Double totalFee = (month - DEFAULT_MONTH) <= 0 ? 0.0 : ((month - DEFAULT_MONTH) * 100.0);
+		Doctor doctor = new Doctor();
+		doctor.setId(doctorId);
+		Doctor _doctor = null;
+		try {
+			_doctor = doctorService.findDoctorDetail(doctor);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		Double totalFee = (month - DEFAULT_MONTH) <= 0 ? 0.0 : ((month - DEFAULT_MONTH) * _doctor.getPrice());
 		
 		Map<String,Object> configMap = new HashMap<String,Object>();
 		try {
