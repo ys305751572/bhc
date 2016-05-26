@@ -21,7 +21,7 @@
 			TITLE,
 			CONTENT,
 			CREATE_USER,
-			CREATE_DATA
+			create_date
 		)
 		VALUES
 		(

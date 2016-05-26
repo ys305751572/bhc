@@ -103,7 +103,9 @@ public class CommonsApp {
 			// 成功
 			if (SmsUtils.cjsmsSend(code, mobiles)) {
 				cacheService.put(mobile, code);
-				return Result.success();
+				Map<String,String> codeMap = new HashMap<String,String>();
+				codeMap.put("code", code);
+				return Result.success(codeMap);
 			}
 			// 失败
 			else {

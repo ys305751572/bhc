@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bluemobi.pro.entity.FeedBack;
 import com.bluemobi.pro.entity.Image;
 import com.bluemobi.sys.service.BaseService;
-import com.bluemobi.utils.DateUtils;
 import com.bluemobi.utils.UUIDUtil;
 
 @Service
@@ -29,7 +28,7 @@ public class FeedBackService extends BaseService{
 	public void insert(FeedBack feedBack,List<String> pathList) throws Exception {
 		
 		feedBack.setId(UUIDUtil.generateUUID());
-		feedBack.setCreateDate(DateUtils.getCurrentTime());
+		feedBack.setCreateDate(System.currentTimeMillis());
 		this.getBaseDao().save(PRIFIX + ".insert", feedBack);
 		
 		Image image = null;

@@ -15,7 +15,7 @@ public class FeedBack implements Serializable {
 	private String title;
 	private String content;
 	private String createUser;
-	private String createDate;
+	private Long createDate;
 
 	public String getId() {
 		return id;
@@ -49,11 +49,12 @@ public class FeedBack implements Serializable {
 		this.createUser = createUser;
 	}
 
-	public String getCreateDate() {
+	public Long getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
 	}
+
 }
