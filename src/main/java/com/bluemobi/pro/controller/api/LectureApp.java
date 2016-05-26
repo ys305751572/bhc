@@ -46,6 +46,7 @@ public class LectureApp {
 			page = service.page(params, currentPage, pageSize);
 			Collection<Pathology> list = page.getRows();
 			for (Pathology pathology : list) {
+				pathology.setContent(pathology.getContent() == null ? "" : pathology.getContent().replaceAll("&lt", "<").replaceAll("&gt", ">"));
 				pathology.setImage(Constant.DOMAIN_IMAGE + pathology.getImage());
 			}
 		} catch (Exception e) {
